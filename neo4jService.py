@@ -105,7 +105,7 @@ class Neo4jService:
                 LIMIT 1
             """, company_name=company_name, client_email=client_email)
             record = result.single()
-            return dict(record["c"]) if record and record["final_score"] < 10 else None
+            return dict(record["c"]) if record and record["final_score"] < 13 else None
 
         with self.driver.session() as session:
             return session.execute_read(_find)
