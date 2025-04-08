@@ -1,0 +1,2982 @@
+[{
+  "_id": {
+    "$oid": "668e439691294cfb5bb6b519"
+  },
+  "company": "Almacen fotovoltaico",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "inverter"
+    },
+    {
+      "name": " bateries"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:17:26.924Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T08:17:26.924Z"
+  },
+  "__v": 2,
+  "emails": [
+    "tecnico@elalmacenfotovoltaico.com"
+  ],
+  "phones": [
+    "858225145"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e441e91294cfb5bb6b524"
+  },
+  "company": "ARQUES CONSTRUCCIÓN",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "Articles de construcció"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:19:42.565Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T08:19:42.565Z"
+  },
+  "__v": 2,
+  "emails": [
+    "margacomercialarques@gmail.com"
+  ],
+  "phones": [
+    "977 47 80 80"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e449c91294cfb5bb6b52f"
+  },
+  "company": "BATNA",
+  "commercial_name": "Leszek",
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:21:48.288Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T10:10:38.362Z"
+  },
+  "__v": 2,
+  "emails": [
+    "leszek@batna24.com"
+  ],
+  "phones": [
+    "48726187705"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e450591294cfb5bb6b53a"
+  },
+  "company": "CDR",
+  "commercial_name": "Magdalena  ",
+  "products": [
+    {
+      "name": "AC1200"
+    },
+    {
+      "name": "Tenda"
+    },
+    {
+      "name": "router"
+    },
+    {
+      "name": "routers fibra"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:23:33.132Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T08:23:33.132Z"
+  },
+  "__v": 2,
+  "emails": [
+    "tienda@cdr.pl"
+  ],
+  "phones": [
+    "657271397"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e45e791294cfb5bb6b545"
+  },
+  "company": "COMERCIAL ARQUES",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "materials construcció"
+    }
+  ],
+  "description": "othe number:691079651",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:27:19.356Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T08:27:19.356Z"
+  },
+  "__v": 2,
+  "emails": [
+    "margacomercialarques@gmail.com"
+  ],
+  "phones": [
+    "977478080"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e462f91294cfb5bb6b550"
+  },
+  "company": "COOL Accesorios S.l.",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "accesoris mobils"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:28:31.091Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T10:09:53.505Z"
+  },
+  "__v": 4,
+  "emails": [
+    "info@coolaccesorios.com"
+  ],
+  "phones": []
+},
+{
+  "_id": {
+    "$oid": "668e467891294cfb5bb6b562"
+  },
+  "company": "COPY RAPID",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "impressió"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:29:44.129Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-17T14:29:39.964Z"
+  },
+  "__v": 3,
+  "emails": [
+    "copyrapidtortosa@gmail.com"
+  ],
+  "phones": [
+    "610 99 10 30"
+  ],
+  "finalAmount": {
+    "USD": "-2205"
+  },
+  "finalShouldPay": {
+    "USD": "2205"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "countSupplierInvoices": 3,
+  "supplierInvoices": [
+    {
+      "$oid": "67c7156439d857a57504334d"
+    },
+    {
+      "$oid": "67c7268ad17799622bc6a133"
+    },
+    {
+      "$oid": "67d831d34bf05d7d4f6b51e1"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e470f91294cfb5bb6b578"
+  },
+  "company": "ELECTROSTOCKS",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "tubs corrugats"
+    },
+    {
+      "name": "a/c"
+    },
+    {
+      "name": "cables llum"
+    },
+    {
+      "name": "magnetos"
+    },
+    {
+      "name": "material fontaneria"
+    },
+    {
+      "name": "plaques solars"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T08:32:15.255Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T08:32:15.255Z"
+  },
+  "__v": 2,
+  "emails": [
+    "miquel.gonzalez@grupoelectrostocks.com"
+  ],
+  "phones": [
+    "977703400"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e565c91294cfb5bb6b603"
+  },
+  "company": "ESCALERAS ARIZONA",
+  "commercial_name": "",
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:37:32.593Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T09:37:32.593Z"
+  },
+  "__v": 2,
+  "emails": [
+    "escaleras@escalerasarizona.com"
+  ],
+  "phones": [
+    "34948740386"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e56c691294cfb5bb6b60e"
+  },
+  "company": "FER3",
+  "commercial_name": "juan José ",
+  "products": [
+    {
+      "name": "senyals"
+    },
+    {
+      "name": "conos"
+    },
+    {
+      "name": " radials"
+    },
+    {
+      "name": "compra de taladros"
+    },
+    {
+      "name": "bombes aigua"
+    },
+    {
+      "name": "compactadors"
+    },
+    {
+      "name": "lloguer grupos"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:39:18.595Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T09:39:18.595Z"
+  },
+  "__v": 2,
+  "emails": [
+    "fer3@fer3.cat"
+  ],
+  "phones": [
+    "606176994"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e572a91294cfb5bb6b619"
+  },
+  "company": "FORN DE L'OBRA ",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "materials construcció"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:40:58.642Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T09:40:58.642Z"
+  },
+  "__v": 2,
+  "emails": [
+    "ldeltebro@gmail.com"
+  ],
+  "phones": [
+    "977489422"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e580d91294cfb5bb6b624"
+  },
+  "company": "FS",
+  "commercial_name": "",
+  "products": [],
+  "description": "fs.com\n\nDon't have mail or phone, Agusti and Maria usually buy on web (we believe that)",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:44:45.034Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T10:06:04.294Z"
+  },
+  "__v": 3,
+  "emails": [],
+  "phones": []
+},
+{
+  "_id": {
+    "$oid": "668e586d91294cfb5bb6b633"
+  },
+  "company": "HERRAIZ",
+  "commercial_name": "JOSEP PANISELLO",
+  "products": [
+    {
+      "name": "roba serigrafiada"
+    },
+    {
+      "name": " EPI"
+    },
+    {
+      "name": " rolls de corda"
+    },
+    {
+      "name": "cintes telecomunicacions"
+    },
+    {
+      "name": " material fontaneria"
+    },
+    {
+      "name": "tubs corrugats"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:46:21.882Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T09:46:21.882Z"
+  },
+  "__v": 2,
+  "emails": [
+    "comercialherraiz@herraiz.com"
+  ],
+  "phones": [
+    "977 50 13 00"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e588d91294cfb5bb6b63e"
+  },
+  "company": "HIERROS DELTA",
+  "commercial_name": "",
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:46:53.101Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T09:46:53.101Z"
+  },
+  "__v": 2,
+  "emails": [
+    "atencioncliente@hierrosdelta.com"
+  ],
+  "phones": []
+},
+{
+  "_id": {
+    "$oid": "668e58e191294cfb5bb6b649"
+  },
+  "company": "INSTANTBYTE",
+  "commercial_name": "Cristina",
+  "products": [
+    {
+      "name": "antenes"
+    },
+    {
+      "name": "link"
+    },
+    {
+      "name": " routers tp"
+    },
+    {
+      "name": "racks"
+    },
+    {
+      "name": "switchos"
+    },
+    {
+      "name": "telefonia ip"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:48:17.228Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T10:04:37.863Z"
+  },
+  "__v": 2,
+  "emails": [
+    "c.martinez@instantbyte.com"
+  ],
+  "phones": [
+    "910 84 10 11"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e59bb91294cfb5bb6b654"
+  },
+  "company": "KEYFIBER",
+  "commercial_name": "Paty",
+  "products": [
+    {
+      "name": "racks"
+    },
+    {
+      "name": "cables"
+    },
+    {
+      "name": "fibra óptica"
+    },
+    {
+      "name": "latiguillos"
+    },
+    {
+      "name": "caixes pau"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:51:55.771Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T10:04:27.885Z"
+  },
+  "__v": 3,
+  "emails": [
+    "p.faur@keyfibre.com",
+    "v.cebrian@keyfiber.com"
+  ],
+  "phones": [
+    "681 33 90 18"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e5a3691294cfb5bb6b65f"
+  },
+  "company": "KEYNET ",
+  "commercial_name": "Francisco",
+  "products": [
+    {
+      "name": "conectores "
+    },
+    {
+      "name": "racks"
+    },
+    {
+      "name": " cables acometidas"
+    },
+    {
+      "name": "latiguillos"
+    },
+    {
+      "name": "caixes pau"
+    }
+  ],
+  "description": "other phone:622 63 77 04",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:53:58.311Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T09:53:58.311Z"
+  },
+  "__v": 2,
+  "emails": [
+    "francisco.lopez@keynet-systems.com"
+  ],
+  "phones": [
+    "976860021"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e5a9191294cfb5bb6b66a"
+  },
+  "company": "SALTOKI",
+  "commercial_name": "XIMO SABATÉ",
+  "products": [
+    {
+      "name": "plaques solars"
+    },
+    {
+      "name": "material fontaneria"
+    },
+    {
+      "name": "magnetos"
+    },
+    {
+      "name": "cables llum"
+    },
+    {
+      "name": "a/c"
+    },
+    {
+      "name": "tubs corrugats"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:55:29.778Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T06:19:52.767Z"
+  },
+  "__v": 3,
+  "emails": [
+    "jsabate@saltoki.es"
+  ],
+  "phones": [
+    "650 45 38 64"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e5adc91294cfb5bb6b675"
+  },
+  "company": "SINELEC",
+  "commercial_name": "Josep Botella",
+  "products": [
+    {
+      "name": "tubs corrugats"
+    },
+    {
+      "name": "a/c"
+    },
+    {
+      "name": "cables llum"
+    },
+    {
+      "name": "magnetos"
+    },
+    {
+      "name": "material fontaneria"
+    },
+    {
+      "name": "plaques solars"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:56:44.368Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T06:19:09.159Z"
+  },
+  "__v": 3,
+  "emails": [
+    "josep.botella@gruposinelec.com"
+  ],
+  "phones": [
+    "678 88 42 85"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e5b9c91294cfb5bb6b680"
+  },
+  "company": "Sonicolor",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "RJ45 "
+    },
+    {
+      "name": "mastils"
+    }
+  ],
+  "description": "email: \nventas@sonicolor.es",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T09:59:56.037Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T10:00:38.386Z"
+  },
+  "__v": 3,
+  "emails": [
+    "support@sonicolor.freshdesk.com"
+  ],
+  "phones": [
+    "954630514"
+  ]
+},
+{
+  "_id": {
+    "$oid": "668e5c0c91294cfb5bb6b692"
+  },
+  "company": "Suministros del Sol",
+  "commercial_name": "",
+  "products": [
+    {
+      "name": "plaques solars"
+    },
+    {
+      "name": "bateries"
+    },
+    {
+      "name": "inverter"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T10:01:48.811Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T06:17:09.861Z"
+  },
+  "__v": 3,
+  "emails": [
+    "info@suministrosdelsol.com"
+  ],
+  "phones": []
+},
+{
+  "_id": {
+    "$oid": "668e5c5791294cfb5bb6b6ae"
+  },
+  "company": "Xbest",
+  "commercial_name": "Rafa",
+  "products": [
+    {
+      "name": "cable fibra"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T10:03:03.809Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:50:14.343Z"
+  },
+  "__v": 2,
+  "emails": [
+    "r.cmiel@xbest.pl"
+  ],
+  "phones": [
+    "+48 533 713 809"
+  ],
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "countSupplierInvoices": 1,
+  "supplierInvoices": [
+    {
+      "$oid": "67f37423abe51b96b5780cf6"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "66911671ffd0dbb4ebd1aef3"
+  },
+  "company": "PROTELSUR",
+  "commercial_name": "",
+  "emails": [
+    "administracion@protelsur.net",
+    "info@protelsur.net"
+  ],
+  "phones": [
+    "954612447"
+  ],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a530b5d798eae660c3416"
+  },
+  "createdAt": {
+    "$date": "2024-07-12T11:41:37.786Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T11:41:37.786Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d85d41747df114463f32"
+  },
+  "company": "Autosolar",
+  "commercial_name": "Paula",
+  "emails": [
+    "paulagarcia@autosolar.es"
+  ],
+  "phones": [
+    "961430113"
+  ],
+  "products": [
+    {
+      "name": "bateries"
+    },
+    {
+      "name": "inverter"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:54:53.311Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:54:53.311Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d89741747df114463f49"
+  },
+  "company": "FIBERCOM",
+  "commercial_name": "Jorge",
+  "emails": [
+    "jorge@fibercom.es"
+  ],
+  "phones": [
+    "669415199"
+  ],
+  "products": [
+    {
+      "name": "Reparació fusionadores"
+    },
+    {
+      "name": "Fusionadores"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:55:51.170Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:55:51.170Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d8bc41747df114463f5c"
+  },
+  "company": "OFICOMPLET",
+  "commercial_name": "Alina",
+  "emails": [],
+  "phones": [
+    "616 37 87 39"
+  ],
+  "products": [
+    {
+      "name": "material oficina"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:56:28.642Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:56:28.642Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d8d841747df114463f67"
+  },
+  "company": "PROTELSUR",
+  "commercial_name": "",
+  "emails": [
+    "administracion@protelsur.net",
+    "info@protelsur.net"
+  ],
+  "phones": [
+    "954612447"
+  ],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:56:56.559Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:56:56.559Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d90141747df114463f72"
+  },
+  "company": "Refitel ",
+  "commercial_name": "Carlos Sanz ",
+  "emails": [
+    "csanz@refitel.com"
+  ],
+  "phones": [
+    "962 761 315 "
+  ],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:57:37.370Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:57:37.370Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d91941747df114463f7d"
+  },
+  "company": "REBACAS",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [
+    "964 994 276"
+  ],
+  "products": [
+    {
+      "name": "bateries, plaques solars, "
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:58:01.105Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:58:01.105Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d93641747df114463f88"
+  },
+  "company": "RM PARTS",
+  "commercial_name": "",
+  "emails": [
+    "mtorres@rmpartsgroup.com"
+  ],
+  "phones": [
+    "935851717"
+  ],
+  "products": [
+    {
+      "name": "piques zanjadora"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:58:30.398Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:58:30.398Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d95a41747df114463f93"
+  },
+  "company": "TELEVES",
+  "commercial_name": "Marc Botella",
+  "emails": [
+    "marbot@televes.com"
+  ],
+  "phones": [],
+  "products": [
+    {
+      "name": "racks "
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T08:59:06.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:59:06.749Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698d9cd41747df114463fa6"
+  },
+  "company": "WURTH",
+  "commercial_name": "Marc",
+  "emails": [
+    "marc.bartumeus@wurth.es"
+  ],
+  "phones": [
+    "631040601"
+  ],
+  "products": [
+    {
+      "name": "sabates de seguretat"
+    },
+    {
+      "name": "casc de seguretat"
+    },
+    {
+      "name": "tacos"
+    },
+    {
+      "name": "tornilleria"
+    },
+    {
+      "name": "brides"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T09:01:01.541Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-25T11:01:12.216Z"
+  },
+  "__v": 0,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "countSupplierInvoices": 1,
+  "supplierInvoices": [
+    {
+      "$oid": "67bda2ca4e643cd6a05790d5"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6698d9e841747df114463fb6"
+  },
+  "company": "ECOPORTATIL",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "description": "Buy@delinternet.com/Merda123",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T09:01:28.857Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T09:01:28.857Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698da1341747df114463fc1"
+  },
+  "company": "WCC Solar",
+  "commercial_name": "",
+  "emails": [
+    "servicio@wccsolar.es"
+  ],
+  "phones": [
+    "854556349"
+  ],
+  "products": [
+    {
+      "name": "2 inversors"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T09:02:11.787Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T09:02:11.787Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698da2f41747df114463fcc"
+  },
+  "company": "powerplanet",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [],
+  "products": [
+    {
+      "name": "auriculars"
+    },
+    {
+      "name": "mobils"
+    }
+  ],
+  "description": "buy@delinternet.com\tMerda123",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T09:02:39.434Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T09:02:39.434Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698dcdb41747df114463ffe"
+  },
+  "company": "Novatel",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [
+    "9644621010"
+  ],
+  "products": [
+    {
+      "name": "extintors"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T09:14:03.279Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T09:14:03.279Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6698dcf541747df114464009"
+  },
+  "company": "Ali Express",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "description": "josep.boix@delinternet.com/Merda123",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-07-18T09:14:29.707Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T09:31:20.156Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a3acce0638065c0542b156"
+  },
+  "company": "ALGON ALQUILER ",
+  "commercial_name": "MARC SAMPER",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "description": "Renting de vehículos y maquinaria industrial. \nRental of vehicles and industrial machinery.",
+  "creator": {
+    "$oid": "668fb2f35d128bdc78974424"
+  },
+  "createdAt": {
+    "$date": "2024-07-26T14:03:58.132Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-26T14:03:58.132Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66ac7764ed607e79f5696f79"
+  },
+  "company": "Amazon",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a530e5d798eae660c3425"
+  },
+  "createdAt": {
+    "$date": "2024-08-02T06:06:28.418Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-02T06:06:28.418Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66b1c407779995a80fcd479d"
+  },
+  "company": "Ebrecultiu",
+  "commercial_name": "",
+  "emails": [
+    "administracio@ebrecultius.com."
+  ],
+  "phones": [
+    "977 48 14 13"
+  ],
+  "products": [
+    {
+      "name": "Insecticida avispas"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "668fb2f35d128bdc78974424"
+  },
+  "createdAt": {
+    "$date": "2024-08-06T06:34:47.295Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-06T06:34:47.295Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66b3133ee93ccf5830ef8cf9"
+  },
+  "company": "Velilla ",
+  "commercial_name": "",
+  "emails": [
+    "info@prolaboral.es"
+  ],
+  "phones": [
+    "968 75 99 99"
+  ],
+  "products": [],
+  "description": "Workswear shop. ",
+  "creator": {
+    "$oid": "668fb2f35d128bdc78974424"
+  },
+  "createdAt": {
+    "$date": "2024-08-07T06:25:02.519Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-07T06:25:02.519Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66b5c96205f86b8d63b88bef"
+  },
+  "company": "BOBCAT ",
+  "commercial_name": "GUIM",
+  "emails": [
+    "guim.rusinol@bobcatof.com"
+  ],
+  "phones": [
+    "661 577 260"
+  ],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "668fb2f35d128bdc78974424"
+  },
+  "createdAt": {
+    "$date": "2024-08-09T07:46:42.356Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-09T07:46:42.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d0a27173a01d778e7470ef"
+  },
+  "company": "OPTIMIUS (Systebro)",
+  "commercial_name": "",
+  "emails": [
+    "deltebre@teknik.es "
+  ],
+  "phones": [
+    "977 48 37 00"
+  ],
+  "products": [
+    {
+      "name": "xupilla del 6",
+      "id": "505efb24-8311-4dbe-a64b-80c2dad65a90"
+    },
+    {
+      "name": "xupilla 10"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "668fb2f35d128bdc78974424"
+  },
+  "createdAt": {
+    "$date": "2024-08-29T16:31:45.055Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-29T16:31:45.055Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66e3e9bd980b3b9035825dd0"
+  },
+  "company": "test by mina comp",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [
+    "09"
+  ],
+  "products": [
+    {
+      "name": "Mina test Product"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "667a53035d798eae660c33e0"
+  },
+  "createdAt": {
+    "$date": "2024-09-13T07:29:01.070Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-13T07:29:01.070Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66e444944ae6d631ed026f27"
+  },
+  "company": "CAMPO",
+  "commercial_name": "Xavier Gil Clua",
+  "emails": [
+    "xgil@xenergia.cat"
+  ],
+  "phones": [
+    "608345099"
+  ],
+  "products": [
+    {
+      "name": "Gasoil",
+      "id": "fa328c04-0133-48b6-9262-ec391600f5bb"
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "668fb2f35d128bdc78974424"
+  },
+  "createdAt": {
+    "$date": "2024-09-13T13:56:36.368Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-13T13:56:36.368Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66e46e0c4ae6d631ed02731a"
+  },
+  "company": "DSP SOLAR ",
+  "commercial_name": "Maria Miranda Pérez",
+  "emails": [
+    "catchall@distribucionessolares.com"
+  ],
+  "phones": [
+    "621151135"
+  ],
+  "products": [
+    {
+      "name": "Bateria VE Bus BMS ",
+      "productId": null,
+      "_id": {
+        "$oid": "6735d6e74bc6be0d85856aa3"
+      }
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "668fb2f35d128bdc78974424"
+  },
+  "createdAt": {
+    "$date": "2024-09-13T16:53:32.550Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-14T10:54:31.620Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "6735cd514bc6be0d858558cd"
+  },
+  "company": "ALIBABA",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a53035d798eae660c33e0"
+  },
+  "createdAt": {
+    "$date": "2024-11-14T10:13:37.930Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-14T10:13:37.930Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6735ce3d4bc6be0d85855be7"
+  },
+  "company": "PC COMPONENTES\t",
+  "commercial_name": "",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a53035d798eae660c33e0"
+  },
+  "createdAt": {
+    "$date": "2024-11-14T10:17:33.822Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-14T10:17:33.822Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6735cf0d4bc6be0d85855d01"
+  },
+  "company": "BENITO",
+  "commercial_name": "Ester Solera",
+  "emails": [
+    " esolera@benito.com"
+  ],
+  "phones": [
+    "93 852 1000"
+  ],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "667a53035d798eae660c33e0"
+  },
+  "createdAt": {
+    "$date": "2024-11-14T10:21:01.799Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-21T12:22:58.618Z"
+  },
+  "__v": 1,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "countSupplierInvoices": 2,
+  "supplierInvoices": [
+    {
+      "$oid": "6784c44dbef81dfe6a8de092"
+    },
+    {
+      "$oid": "6784cebabef81dfe6a8de561"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "678e658bae7e43111399e855"
+  },
+  "company": "Servicios y Suministros Tecnicos del Ebro SL",
+  "commercial_name": "Ferreteria Teknik",
+  "emails": [
+    "ferreteria@systebro.es"
+  ],
+  "phones": [
+    "681261904"
+  ],
+  "products": [
+    {
+      "name": "xupilla del 6",
+      "productId": {
+        "$oid": "66717a4b47d728b17750257c"
+      },
+      "_id": {
+        "$oid": "678e658bae7e43111399e856"
+      }
+    }
+  ],
+  "description": "",
+  "creator": {
+    "$oid": "678e235336d3725a143bcf41"
+  },
+  "supplierInvoices": [],
+  "countSupplierInvoices": 0,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-01-20T15:02:35.640Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-20T15:02:35.640Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6798b96eda210a6404598d23"
+  },
+  "company": "Albentia Systems",
+  "commercial_name": "Albentia Systems SA",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "description": "",
+  "creator": {
+    "$oid": "678e235336d3725a143bcf41"
+  },
+  "supplierInvoices": [],
+  "countSupplierInvoices": 0,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-01-28T11:03:10.114Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-28T11:03:10.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a1d91362dc05a6c8255fc0"
+  },
+  "company": "SUPERCOMP DIGITAL S. L. ",
+  "commercial_name": "NOE GIL",
+  "emails": [
+    "noe.gil@supercompdigital.es"
+  ],
+  "phones": [
+    "+34 638 34 86 66"
+  ],
+  "products": [
+    {
+      "name": "gigaset a170 negro ",
+      "productId": {
+        "$oid": "6749d17a5f159642cbc01f0a"
+      },
+      "_id": {
+        "$oid": "67a1d95a62dc05a6c8255fdf"
+      }
+    }
+  ],
+  "description": "proveïdor de telefonia",
+  "creator": {
+    "$oid": "667a52f65d798eae660c3382"
+  },
+  "supplierInvoices": [],
+  "countSupplierInvoices": 0,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-02-04T09:08:35.070Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-04T09:09:46.434Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "67bd984d4e643cd6a05782ea"
+  },
+  "company": "Fustes Mauri, S.L.",
+  "commercial_name": "FUSTES MAURI",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67bd9a5a4e643cd6a0578554"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 55606446,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-02-25T10:15:41.034Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-25T14:47:21.276Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67beefb74e643cd6a058662e"
+  },
+  "company": "X-BEST ES S.L.",
+  "commercial_name": "X-BEST ES S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c5c29239d857a57503557e"
+    },
+    {
+      "$oid": "67c700c039d857a5750414b9"
+    },
+    {
+      "$oid": "67d021ea3143576d0bff5947"
+    },
+    {
+      "$oid": "67d022963143576d0bff5b59"
+    },
+    {
+      "$oid": "67d025f53143576d0bff6210"
+    },
+    {
+      "$oid": "67d026e33143576d0bff637d"
+    },
+    {
+      "$oid": "67da8a114bf05d7d4f6cbacf"
+    },
+    {
+      "$oid": "67da8afc4bf05d7d4f6cbbfc"
+    },
+    {
+      "$oid": "67dbfa5cfd78151022ea1128"
+    }
+  ],
+  "countSupplierInvoices": 9,
+  "vatNumber": 13945621,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-02-26T10:40:55.547Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-04T08:16:16.633Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6fbc539d857a575040f56"
+  },
+  "company": "OPERADORS QUILOMETRE ZERO, S.L.",
+  "commercial_name": "OPERADORS QUILOMETRE ZERO, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c6fd1e39d857a575040fdb"
+    },
+    {
+      "$oid": "67c7077339d857a575041d04"
+    },
+    {
+      "$oid": "67c71eb4d17799622bc696fe"
+    },
+    {
+      "$oid": "67d4089c4bf05d7d4f6963b7"
+    },
+    {
+      "$oid": "67f37199abe51b96b5780950"
+    }
+  ],
+  "countSupplierInvoices": 5,
+  "vatNumber": 67073288,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T13:10:29.958Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:52:27.636Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6fed539d857a5750411f8"
+  },
+  "company": "ELECTROCLIMA AMBIENT, S.L.",
+  "commercial_name": "ELECTROCLIMA AMBIENT, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c6fee239d857a57504120b"
+    },
+    {
+      "$oid": "67c7024539d857a575041675"
+    },
+    {
+      "$oid": "67c7054e39d857a575041a61"
+    },
+    {
+      "$oid": "67c7103039d857a575042c51"
+    },
+    {
+      "$oid": "67ee80895f9e2986cc29b46a"
+    },
+    {
+      "$oid": "67ee83925f9e2986cc29b788"
+    },
+    {
+      "$oid": "67ee83e85f9e2986cc29b81b"
+    },
+    {
+      "$oid": "67ee84415f9e2986cc29b981"
+    }
+  ],
+  "countSupplierInvoices": 8,
+  "vatNumber": 55716062,
+  "finalAmount": {
+    "USD": "-8567.91"
+  },
+  "finalShouldPay": {
+    "USD": "8567.91"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-04T13:23:33.871Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-03T12:51:14.014Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6ff2239d857a575041263"
+  },
+  "company": "BERNARDO CARMONA RAMON",
+  "commercial_name": "BERNARDO CARMONA RAMON",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c6ffe439d857a5750412ef"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 78580995,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T13:24:50.415Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-21T04:39:12.131Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c707af39d857a575041d74"
+  },
+  "company": "TRANSPORTES LOGIBLUE, S,L.",
+  "commercial_name": "TRANSPORTES LOGIBLUE, S,L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c7082439d857a575041e27"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 55745830,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T14:01:19.854Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-26T13:14:18.519Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c708bc39d857a575041f58"
+  },
+  "company": "RANDSTAD EMPLEO EMPRESA DE TRABAJO TEMPORAL S.A.U.",
+  "commercial_name": "RANDSTAD EMPLEO EMPRESA DE TRABAJO TEMPORAL S.A.U.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c70afd39d857a5750421af"
+    },
+    {
+      "$oid": "67da890f4bf05d7d4f6cb856"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 80652928,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T14:05:48.726Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-21T04:31:56.170Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c70b6939d857a5750422d2"
+  },
+  "company": "MARBRES ROCA, C.B.",
+  "commercial_name": "MARBRES ROCA, C.B.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c70c1939d857a57504240e"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 43650258,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T14:17:13.523Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-07T11:25:09.688Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c70c9a39d857a5750424ce"
+  },
+  "company": "AXENT INFRAESTRUCTURAS DE TELECOMUNICACIONES, S.A.",
+  "commercial_name": "AXENT INFRAESTRUCTURAS DE TELECOMUNICACIONES, S.A.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c70d2539d857a5750425d1"
+    },
+    {
+      "$oid": "67ea56095f9e2986cc270a32"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 88092127,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T14:22:18.906Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-02T07:17:56.319Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c70d7d39d857a57504266c"
+  },
+  "company": "SISTEMES DE FRED INDUSTRIAL I CLIMA S.L.",
+  "commercial_name": "SISTEMES DE FRED INDUSTRIAL I CLIMA S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c70f1439d857a5750429b0"
+    },
+    {
+      "$oid": "67ea52b55f9e2986cc270358"
+    },
+    {
+      "$oid": "67ed09d65f9e2986cc28c800"
+    }
+  ],
+  "countSupplierInvoices": 3,
+  "vatNumber": 55600076,
+  "finalAmount": {
+    "USD": "-8089.8"
+  },
+  "finalShouldPay": {
+    "USD": "8089.8"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-04T14:26:05.593Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-02T09:56:38.091Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c7109139d857a575042cc1"
+  },
+  "company": "J.J. SORRIBES CONSTRUCCIONS, S.L.",
+  "commercial_name": "J.J. SORRIBES CONSTRUCCIONS, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c7118539d857a575042ecb"
+    },
+    {
+      "$oid": "67c7140839d857a5750431fb"
+    },
+    {
+      "$oid": "67ee7eb55f9e2986cc29b0ab"
+    }
+  ],
+  "countSupplierInvoices": 3,
+  "vatNumber": 43640564,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T14:39:13.377Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-04T13:19:24.012Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c7120e39d857a575042f33"
+  },
+  "company": "AUTOS DELTA , SCP",
+  "commercial_name": "AUTOS DELTA , SCP",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c7138239d857a575043155"
+    },
+    {
+      "$oid": "67c72797d17799622bc6a24b"
+    },
+    {
+      "$oid": "67d80b0a4bf05d7d4f6b3555"
+    },
+    {
+      "$oid": "67d80d2b4bf05d7d4f6b3844"
+    },
+    {
+      "$oid": "67d830b84bf05d7d4f6b5077"
+    },
+    {
+      "$oid": "67dbfc34fd78151022ea1293"
+    },
+    {
+      "$oid": "67dbfe12fd78151022ea14a5"
+    },
+    {
+      "$oid": "67e13aaafd78151022eccde7"
+    }
+  ],
+  "countSupplierInvoices": 8,
+  "vatNumber": 55540785,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T14:45:34.946Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-27T11:13:53.603Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c715ac39d857a5750434a0"
+  },
+  "company": "CONSTRUCCIONES BENIDRAR, S.L.",
+  "commercial_name": "CONSTRUCCIONES BENIDRAR, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c7160039d857a57504350a"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 43981174,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T15:01:00.976Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-21T04:36:37.341Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c71dbed17799622bc6963b"
+  },
+  "company": "VERONICA ORNELAS ROCHA",
+  "commercial_name": "VERONICA ORNELAS ROCHA",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c96b9fd17799622bc7fd63"
+    },
+    {
+      "$oid": "67ee7ddc5f9e2986cc29afef"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 49318578,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T15:35:26.878Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-04T06:49:53.120Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c71ef7d17799622bc6983b"
+  },
+  "company": "SIC REFORMES FUSTERS S.L.U.",
+  "commercial_name": "SIC REFORMES FUSTERS S.L.U.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c7246fd17799622bc69ebb"
+    },
+    {
+      "$oid": "67c725efd17799622bc6a088"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 55687305,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T15:40:39.018Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-21T04:36:09.244Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c727f8d17799622bc6a31b"
+  },
+  "company": "RENATO  LLAMBRICH ARQUES",
+  "commercial_name": "RENATO LLAMBRICH ARQUES",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c7289ad17799622bc6a447"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 78577776,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T16:19:04.113Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-13T14:19:49.806Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c72924d17799622bc6a4dc"
+  },
+  "company": "FUNDICION DUCTIL FABREGAS, S.A.U.",
+  "commercial_name": "FUNDICION DUCTIL FABREGAS, S.A.U.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c729b2d17799622bc6a579"
+    },
+    {
+      "$oid": "67ee82935f9e2986cc29b694"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 58574518,
+  "finalAmount": {
+    "USD": "-3513"
+  },
+  "finalShouldPay": {
+    "USD": "3513"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-04T16:24:04.510Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-03T12:44:03.419Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c729e6d17799622bc6a5d9"
+  },
+  "company": "NETEGES CARME GISBERT, S.L.",
+  "commercial_name": "NETEGES CARME GISBERT, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c72a5dd17799622bc6a632"
+    },
+    {
+      "$oid": "67c72b8dd17799622bc6a7fb"
+    },
+    {
+      "$oid": "67ea55a45f9e2986cc270958"
+    }
+  ],
+  "countSupplierInvoices": 3,
+  "vatNumber": 72687759,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T16:27:18.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-04T08:19:34.030Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c72c60d17799622bc6a906"
+  },
+  "company": "INCERVAL S.L.",
+  "commercial_name": "INCERVAL, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c72cd1d17799622bc6a970"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 96398300,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T16:37:52.642Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-06T10:50:22.647Z"
+  },
+  "__v": 0,
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "67c72da0d17799622bc6abc0"
+  },
+  "company": "MAYOR MATERIALS PER A LA CONSTRUCCIÓ, S.L",
+  "commercial_name": "MAYOR MATERIALS PER A LA CONSTRUCCIÓ, S.L",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c72e33d17799622bc6ac1e"
+    },
+    {
+      "$oid": "67ee830c5f9e2986cc29b70a"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 43998574,
+  "finalAmount": {
+    "USD": "-73.25544"
+  },
+  "finalShouldPay": {
+    "USD": "73.25544"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-04T16:43:12.134Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-03T12:46:04.224Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c72e69d17799622bc6ac80"
+  },
+  "company": "SOLITIUM CONTROL GROUP, S.A.",
+  "commercial_name": "SOLITIUM CONTROL GROUP, S.A.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c72f42d17799622bc6ae27"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 8588170,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T16:46:33.660Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-27T10:36:50.398Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c72f7bd17799622bc6ae67"
+  },
+  "company": "PNEUMATICS MILLAN S.L.",
+  "commercial_name": "PNEUMATICS MILLAN S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c72fe8d17799622bc6aec1"
+    },
+    {
+      "$oid": "67f3753eabe51b96b5780e20"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 43430875,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-04T16:51:07.758Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:49:20.032Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c98164d17799622bc81892"
+  },
+  "company": "DELTAVALORACIONS SLP",
+  "commercial_name": "DELTAVALORACIONS SLP",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c9840bd17799622bc81b44"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 43754829,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-06T11:05:08.477Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-13T10:52:35.776Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c98644d17799622bc81edc"
+  },
+  "company": "Martinez Orantes Abogados SLP",
+  "commercial_name": "Martinez Orantes Abogados SLP",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67c9864ad17799622bc81eed"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 43943621,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-06T11:25:56.857Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-07T11:22:32.475Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67cac508d17799622bc8d9fd"
+  },
+  "company": "JUAN B. ALTADILL FERRE",
+  "commercial_name": "JUNA B. ALTADILL FERRÉ",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67cac50bd17799622bc8da10"
+    },
+    {
+      "$oid": "67ee5ce95f9e2986cc298ef1"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": 40932859,
+  "finalAmount": {
+    "USD": "-6020"
+  },
+  "finalShouldPay": {
+    "USD": "6020"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-07T10:06:00.258Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-03T10:03:21.600Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d01d183143576d0bff53ac"
+  },
+  "company": "KANARS S.L.",
+  "commercial_name": "KANARS S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67d01ff93143576d0bff55c7"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 58409046,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-11T11:23:04.381Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-20T11:14:32.150Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d022d33143576d0bff5bd3"
+  },
+  "company": "ARCADIO GREGORI, S.L.",
+  "commercial_name": "ARCADIO GREGORI S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67d0235b3143576d0bff5c52"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": 12401352,
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-11T11:47:31.034Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-20T11:12:44.468Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d40d944bf05d7d4f69673b"
+  },
+  "company": "RIUMAR RENTAL, S.L.",
+  "commercial_name": "RIUMAR RENTAL, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67d40e034bf05d7d4f69678d"
+    },
+    {
+      "$oid": "67f37459abe51b96b5780d58"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": "ESB72924061",
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-14T11:05:56.157Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:49:43.834Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d809c94bf05d7d4f6b3315"
+  },
+  "company": "A.E. Barcelo, S.L.",
+  "commercial_name": "A.E. Barcelo, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67d80a0d4bf05d7d4f6b3368"
+    },
+    {
+      "$oid": "67f36ff5abe51b96b5780667"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": "B43470616",
+  "finalAmount": {
+    "USD": "-685.6"
+  },
+  "finalShouldPay": {
+    "USD": "685.6"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-17T11:38:49.909Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:25:57.719Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d830f84bf05d7d4f6b5100"
+  },
+  "company": "Tecnocat 94, S.L.",
+  "commercial_name": "Tecnocat 94, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67d8313d4bf05d7d4f6b5126"
+    },
+    {
+      "$oid": "67eeb26b5f9e2986cc29dac1"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": "B60571148",
+  "finalAmount": {
+    "USD": "-5560"
+  },
+  "finalShouldPay": {
+    "USD": "5560"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-17T14:26:00.774Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-03T16:08:11.687Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67da8b934bf05d7d4f6cbc5d"
+  },
+  "company": "ALUPRAGAR S.L.",
+  "commercial_name": "ALUPRAGAR S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67da8c5a4bf05d7d4f6cbda0"
+    },
+    {
+      "$oid": "67ea53345f9e2986cc270420"
+    }
+  ],
+  "countSupplierInvoices": 2,
+  "vatNumber": "B65748677",
+  "finalAmount": {
+    "USD": "-1000"
+  },
+  "finalShouldPay": {
+    "USD": "1000"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-03-19T09:17:07.088Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-31T08:32:52.496Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67da8c974bf05d7d4f6cbdf5"
+  },
+  "company": "Juan Federico Sabaté Borràs",
+  "commercial_name": "Gràfics",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67da8d334bf05d7d4f6cbf38"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": "52603122Y",
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-19T09:21:27.418Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-27T10:33:38.338Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e13b04fd78151022ecce67"
+  },
+  "company": "ITT DYNAMICS S.L.",
+  "commercial_name": "ITT DYNAMICS S-L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334a"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67e13b59fd78151022eccffa"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": "B62759139",
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-03-24T10:59:16.763Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-27T10:28:21.534Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ee6dad5f9e2986cc299e40"
+  },
+  "company": "RODI METRO, S.L.",
+  "commercial_name": "RODI METRO, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67ee6f565f9e2986cc29a0e7"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": "B6084311",
+  "finalAmount": {
+    "USD": "-1358.99"
+  },
+  "finalShouldPay": {
+    "USD": "1358.99"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-04-03T11:14:53.008Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-03T11:21:58.708Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ee7f065f9e2986cc29b108"
+  },
+  "company": "ZAERA CALAF, S.L.",
+  "commercial_name": "ZAERA CALAF, S.L.",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67ee7f7d5f9e2986cc29b3c6"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": "B43409028",
+  "finalAmount": {
+    "USD": "-89"
+  },
+  "finalShouldPay": {
+    "USD": "89"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-04-03T12:28:54.828Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-03T12:30:53.204Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f371e1abe51b96b57809a9"
+  },
+  "company": "AGEDI",
+  "commercial_name": "AGEDI",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67f3721fabe51b96b57809d3"
+    },
+    {
+      "$oid": "67f37270abe51b96b5780a32"
+    },
+    {
+      "$oid": "67f373a0abe51b96b5780c62"
+    }
+  ],
+  "countSupplierInvoices": 3,
+  "vatNumber": "U-87718094",
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-04-07T06:34:09.993Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:52:03.530Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f3730babe51b96b5780adf"
+  },
+  "company": "ARTISTAS INTERPRETES O EJECUTANTES",
+  "commercial_name": "ARTISTAS INTERPRETES O EJECUTANTES",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67f37348abe51b96b5780bf9"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": "G-79263414",
+  "finalAmount": {},
+  "finalShouldPay": {},
+  "finalShouldReceive": {},
+  "createdAt": {
+    "$date": "2025-04-07T06:39:07.873Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:51:36.120Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f376f9abe51b96b5781272"
+  },
+  "company": "NAVARRO MUNTATGES CSP",
+  "commercial_name": "NAVARRO MUNTATGES CSP",
+  "emails": [],
+  "phones": [],
+  "products": [],
+  "creator": {
+    "$oid": "667a52ed5d798eae660c334c"
+  },
+  "supplierInvoices": [
+    {
+      "$oid": "67f37782abe51b96b57812f0"
+    }
+  ],
+  "countSupplierInvoices": 1,
+  "vatNumber": "J-55722367",
+  "finalAmount": {
+    "USD": "-330"
+  },
+  "finalShouldPay": {
+    "USD": "330"
+  },
+  "finalShouldReceive": {
+    "USD": "0"
+  },
+  "createdAt": {
+    "$date": "2025-04-07T06:55:53.394Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-07T06:58:10.733Z"
+  },
+  "__v": 0
+}]
