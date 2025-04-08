@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # Step 0 : setup config
     load_dotenv()
     openai_api_key = os.getenv("OPENAI_API_KEY")
-    file_name = 'invoice'
+    file_name = 'invoice5'
 
     # Step 1: add directory
     output_dir = f"ocr_output/{file_name}"
@@ -23,8 +23,9 @@ if __name__ == "__main__":
     # Step 2: convert file to text
     convert_file_to_text(file_name,output_dir)
 
-    # Step 3 : extract invoice data
+    # # Step 3 : extract invoice data
     invoice_data= extract_invoice_data_from_gpt(openai_api_key,f"{output_dir}/page1.txt")
+    print("invoice_data...",invoice_data)
 
     # Step 4 : enrich Invoice with Neo4j
     neo4j = Neo4jService(uri="bolt://localhost:7687", username="neo4j", password="del-ai123")
