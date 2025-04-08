@@ -2,7 +2,7 @@
   "invoice_number": "28/25",
   "invoice_date": "31/03/25",
   "provider": {
-    "name": "J.J. Sorribes Construccions, s.l.",
+    "name": "J.J. Sorribes ELZ> Construccions, s.l.",
     "address": "Crer Trinquet - Galeries Trinquet, Local 9 - D, 43580 - LA CAVA - DELTEBRE (TARRAGONA)",
     "contact": {
       "email": "jj.sorribes@hotmail.com",
@@ -17,18 +17,18 @@
       "quantity": 1.0,
       "description": "CERTIFICACIO N°2 PRESSUPOST SEGONS MEDICIONS ADJUNTES.",
       "project": "OBRA: AV. GOLES DE L'EBRE, 127 DELTEBRE",
-      "unit_price": "7,353.50 €",
-      "total": "7,353.50 €",
+      "unit_price": 7353.5,
+      "total": 7353.5,
       "product": null
     }
   ],
   "total": {
-    "base_amount": "7,353.50 €",
+    "base_amount": 7544.24,
     "VAT_rate": null,
-    "VAT_amount": "1,544.24 €",
-    "total_invoice": "8,897.74 €"
+    "VAT_amount": null,
+    "total_invoice": 8897.74
   },
-  "description": "TRANSFERENCIA AL NOSTRE COMPTE DE 'LA CAIXA' ES68 2100 6228 5102 0001 7420",
+  "description": "TRANSFERENCIA AL NOSTRE COMPTE DE \"LA CAIXA\" ES68 2100 6228 5102 0001 7420",
   "supplier": {
     "emails": [],
     "updated_at": "2025-04-04T13:19:24.012Z",
