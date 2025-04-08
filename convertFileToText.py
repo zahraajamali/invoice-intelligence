@@ -22,7 +22,7 @@ def smart_preprocess(pil_image):
     return Image.fromarray(sharpened)
 
 
-def convert_file_to_text(fileName):
+def convert_file_to_text(fileName,output_path):
 
   pages = convert_from_path(f"invoicesFile/{fileName}.pdf")
 
@@ -32,7 +32,7 @@ def convert_file_to_text(fileName):
       ocr_text = pytesseract.image_to_string(processed, config="--psm 6 ")
 
       # Save OCR result
-      with open(f"ocr_output/{fileName}/page{i}.txt", "w", encoding="utf-8") as f:
+      with open(f"{output_path}/page{i+1}.txt", "w", encoding="utf-8") as f:
           f.write(ocr_text)
 
    
