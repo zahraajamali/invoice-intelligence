@@ -45,7 +45,8 @@ class Neo4jService:
                         c.phones = $phones,
                         c.creator_id = $creator_id,
                         c.created_at = $created_at,
-                        c.updated_at = $updated_at
+                        c.updated_at = $updated_at,
+                        c.mongo_id = $mongo_id
                 """,
                 company=client["company"],
                 commercial_name=client.get("commercial_name", ""),
@@ -54,7 +55,8 @@ class Neo4jService:
                 phones=client.get("phones", []),
                 creator_id=client.get("creator"),
                 created_at=client.get("createdAt"),
-                updated_at=client.get("updatedAt")
+                updated_at=client.get("updatedAt"),
+                mongo_id=client.get("_id")
                 )
         with self.driver.session() as session:
             session.execute_write(_create, clients)
@@ -71,7 +73,8 @@ class Neo4jService:
                         i.threshold = $threshold,
                         i.category_id = $category_id,
                         i.creator_id = $creator_id,
-                        i.warehouse_ids = $warehouse_ids
+                        i.warehouse_ids = $warehouse_ids,
+                        i.mongo_id = $mongo_id
                 """,
                 name=item["name"],
                 englishName=item.get("englishName", ""),
@@ -80,32 +83,34 @@ class Neo4jService:
                 threshold=item.get("threshold", 0),
                 category_id=item.get("category"),
                 creator_id=item.get("creator"),
-                warehouse_ids=warehouse_ids
+                warehouse_ids=warehouse_ids,
+                mongo_id=item.get("_id")
                 )
         with self.driver.session() as session:
             session.execute_write(_create, items)
 
-    def find_supplier(self, company_name, client_email):
+
+    def find_supplier(self, company_name, client_email, threshold=13):
         def _find(tx):
             result = tx.run("""
                 MATCH (c:Client)
                 WITH c,
-                    apoc.text.distance(toLower(c.company), toLower($company_name)) AS name_to_company,
-                    apoc.text.distance(toLower(c.commercial_name), toLower($company_name)) AS name_to_commercial,
-                    apoc.text.distance(toLower(c.company), toLower($client_email)) AS email_to_company,
-                    apoc.text.distance(toLower(c.commercial_name), toLower($client_email)) AS email_to_commercial
+                    apoc.text.distance(toLower(c.company), toLower($company_name)) AS dist_company_name
 
                 WITH c,
-                    CASE WHEN name_to_company < name_to_commercial THEN name_to_company ELSE name_to_commercial END AS name_score,
-                    CASE WHEN email_to_company < email_to_commercial THEN email_to_company ELSE email_to_commercial END AS email_score
+                    apoc.coll.min([
+                        dist_company_name
+                    ]) AS final_score
 
-                WITH c, (name_score + email_score) / 2 AS final_score
                 ORDER BY final_score ASC
                 RETURN c, final_score
                 LIMIT 1
             """, company_name=company_name, client_email=client_email)
+
             record = result.single()
-            return dict(record["c"]) if record and record["final_score"] < 13 else None
+            if record:
+                print("📊 Final score:", record["final_score"])
+            return dict(record["c"]) if record and record["final_score"] < threshold else None
 
         with self.driver.session() as session:
             return session.execute_read(_find)
@@ -130,6 +135,7 @@ class Neo4jService:
         Adds supplier and item info to invoice by matching with existing graph data.
         """
         enriched_invoice = copy.deepcopy(invoice)
+
 
         enriched_invoice["supplier"] = self.find_supplier(
             invoice["provider"]["name"],
