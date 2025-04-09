@@ -48,6 +48,8 @@ def build_invoice_extraction_prompt(invoice_text):
             "base_amount": ...,
             "VAT_rate": ...,
             "VAT_amount": ...,
+            "IRPF_rate":...,
+            "IRPF_amount":...,
             "total_invoice": ...
           }},
           "description": "<Any extra relevant information, notes, or context from the invoice not covered by the fields above.>"
@@ -69,13 +71,17 @@ def clean_llm_response(content):
 
 def extract_invoice_data_from_gpt(openai_api_key, invoice_file_path):
     invoice_text = read_invoice_text(invoice_file_path)
-    prompt = build_invoice_extraction_prompt(invoice_text)
+    if(invoice_text):
+      prompt = build_invoice_extraction_prompt(invoice_text)
 
-    llm = ChatOpenAI(openai_api_key=openai_api_key, temperature=0, model="gpt-4o")
-    response = llm.invoke(prompt)
+      llm = ChatOpenAI(openai_api_key=openai_api_key, temperature=0, model="gpt-4o")
+      response = llm.invoke(prompt)
 
-    cleaned = clean_llm_response(response.content)
-    invoice_data = json.loads(cleaned)
-    return invoice_data
+      cleaned = clean_llm_response(response.content)
+      invoice_data = json.loads(cleaned)
+      return invoice_data
+    else:
+        return None
+    
 
 
