@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment
+.env
+venv/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# Output / build folders
+dist/
+build/
+ocr_output/
+formatted_output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
