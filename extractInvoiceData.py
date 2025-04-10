@@ -15,15 +15,18 @@ def build_invoice_extraction_prompt(invoice_text):
         You are a professional invoice analyzer and data extractor.
 
         Read the following unstructured invoice text and return all relevant data in a well-structured JSON format. 
-        **Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** — so only extract provider information and invoice details.
+        **Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** with this information {{address:Pz Mercat La Cava nº 1 Local Delinternet  
+43580 DELTEBRE  
+Tarragona  
+N.I.F : B55606446}} — so only extract provider information and invoice details.
 
         If any field is not found or is not applicable, return `null` for that field.
 
         ✅ The required JSON format is:
 
         {{
-          "invoice_number": ...,
-          "invoice_date": ...,
+          "invoice_number": ..., // Also appears as "NUM. FACTURA", "NÚMERO FACTURA"
+          "invoice_date": ..., // Also appears as "DATA FACTURA", "FECHA FACTURA"
           "provider": {{
             "name": ...,
             "address": ...,
@@ -33,7 +36,7 @@ def build_invoice_extraction_prompt(invoice_text):
               "fax": ...,
               "mobile": ...
             }},
-            "C.I.F.": ...
+            "VAT_NUMBER/NIE/CIF": ...
           }},
           "items": [
             {{
