@@ -9,6 +9,8 @@ from PIL import Image
 from pdf2image import convert_from_path
 
 
+
+
 def detect_rotation(pil_image):
     img = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
     try:
@@ -27,16 +29,16 @@ def smart_preprocess(pil_image):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Slight blur reduction using sharpening kernel
-    kernel = np.array([[0, -1, 0], 
-                       [-1, 5, -1], 
-                       [0, -1, 0]])
-    sharpened = cv2.filter2D(gray, -1, kernel)
+    # kernel = np.array([[0, -1, 0], 
+    #                    [-1, 5, -1], 
+    #                    [0, -1, 0]])
+    # sharpened = cv2.filter2D(gray, -1, kernel)
 
      # Adaptive thresholding for better OCR contrast
     thresh = cv2.adaptiveThreshold(
-        sharpened, 255,
+        gray, 255,
         cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY, 11, 2
+        cv2.THRESH_BINARY, 15, 8
     )
 
     return Image.fromarray(thresh)
@@ -66,7 +68,7 @@ def convert_file_to_text(api_url, output_path,token):
                 page = page.rotate(-angle, expand=True)
 
             processed = smart_preprocess(page)
-            ocr_text = pytesseract.image_to_string(processed, config="--psm 6 --oem 3")
+            ocr_text = pytesseract.image_to_string(processed, config="--psm 4 --oem 3")
 
             with open(f"{output_path}/page{i+1}.txt", "w", encoding="utf-8") as f:
                 f.write(ocr_text)

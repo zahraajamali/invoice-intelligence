@@ -2,20 +2,21 @@
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyc
 
 # Environment
-.env
-venv/
-.venv/
+# .env
+# venv/
+# .venv/
 
-# VS Code settings
-.vscode/
+# # VS Code settings
+# .vscode/
 
-# Output / build folders
-dist/
-build/
-ocr_output/
-formatted_output/
+# # Output / build folders
+# dist/
+# build/
+# ocr_output/
+# formatted_output/
 
 # OS files
 .DS_Store

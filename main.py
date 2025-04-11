@@ -17,7 +17,7 @@ if __name__ == "__main__":
         openai_api_key = os.getenv("OPENAI_API_KEY")
         hub_api_token = os.getenv("HUB_API_TOKEN")
         file_name = 'invoice'
-        url = "https://inventory-server.prd.delinternet.com/api/v1/files/fc1956fda4bb0cbf555707d7b3b7d5a777b2e864dd95cf513d5444779c69a183.pdf"
+        url = "https://inventory-server.prd.delinternet.com/api/v1/files/79c4a4c73d75e82d76768d0afbe01b0a715da6fe4c576f3d5c2f2515e53865ae.pdf"
 
         # Step 1: add directory
         output_dir = f"ocr_output/{file_name}"
@@ -32,8 +32,8 @@ if __name__ == "__main__":
         invoice_data= extract_invoice_data_from_gpt(openai_api_key,f"{output_dir}/page1.txt")
         print("invoice_data...",invoice_data)
 
+        # Step 4 : enrich Invoice with Neo4j
         if(invoice_data):
-            # Step 4 : enrich Invoice with Neo4j
             neo4j = Neo4jService(uri="bolt://localhost:7687", username="neo4j", password="del-ai123")
 
             clients = neo4j.load_clients_from_json("datasets/inventory.suppliers.json")
