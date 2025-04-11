@@ -33,7 +33,7 @@ def build_invoice_extraction_prompt(invoice_text):
               "fax": ...,
               "mobile": ...
             }},
-            "C.I.F.": ...
+            "VAT_NUMBER/NIE/CIF": ...
           }},
           "items": [
             {{
@@ -65,7 +65,6 @@ def build_invoice_extraction_prompt(invoice_text):
 
 
 def clean_llm_response(content):
-    
     return re.sub(r"^```json\s*|\s*```$", "", content.strip())
 
 
