@@ -1,82 +1,73 @@
-import cv2
 import os
+import cv2
 import numpy as np
 import requests
+import pytesseract
+
+from PIL import Image
 from pdf2image import convert_from_bytes
 
-import pytesseract
-from PIL import Image
-from pdf2image import convert_from_path
 
-
-
-
-def detect_rotation(pil_image):
+def detect_rotation(pil_image: Image.Image) -> int:
+    """Detect rotation angle using Tesseract OSD."""
     img = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
     try:
-        osd = pytesseract.image_to_osd(img, config='--psm 0')
-        angle = int([line for line in osd.split('\n') if 'Rotate:' in line][0].split(':')[1])
-        return angle
+        osd = pytesseract.image_to_osd(img, config="--psm 0")
+        angle_line = next(line for line in osd.split("\n") if "Rotate:" in line)
+        return int(angle_line.split(":")[1].strip())
     except Exception:
         return 0  # fallback if detection fails
 
 
-def smart_preprocess(pil_image):
-    # Convert PIL to OpenCV image
+def smart_preprocess(pil_image: Image.Image) -> Image.Image:
+    """Enhance image for better OCR using grayscale and adaptive thresholding."""
     img = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
-    
-    # Convert to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Slight blur reduction using sharpening kernel
-    # kernel = np.array([[0, -1, 0], 
-    #                    [-1, 5, -1], 
-    #                    [0, -1, 0]])
-    # sharpened = cv2.filter2D(gray, -1, kernel)
-
-     # Adaptive thresholding for better OCR contrast
     thresh = cv2.adaptiveThreshold(
         gray, 255,
         cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY, 15, 8
+        cv2.THRESH_BINARY,
+        15, 8
     )
 
     return Image.fromarray(thresh)
 
 
-def convert_file_to_text(api_url, output_path,token):
+def convert_file_to_text(api_url: str, output_path: str, token: str):
+    """Download a PDF from a URL, process it with OCR, and save each page's text."""
     try:
-        headers = {
-        "Authorization": token
-        }
-        print(headers)
-        response = requests.get(api_url,headers=headers)
+        print(f"📥 Downloading PDF from: {api_url}")
+        headers = {"Authorization": token}
+        response = requests.get(api_url, headers=headers)
         response.raise_for_status()
 
-        print(response)
-
-        # Convert PDF bytes to images
+        print("✅ PDF downloaded successfully. Converting to images...")
         pdf_bytes = response.content
         pages = convert_from_bytes(pdf_bytes)
 
         os.makedirs(output_path, exist_ok=True)
 
         for i, page in enumerate(pages):
+            print(f"\n📝 Processing page {i + 1}...")
             angle = detect_rotation(page)
-            print("angel...",angle)
+            print(f"🔄 Detected rotation: {angle}°")
+
             if angle != 0:
                 page = page.rotate(-angle, expand=True)
 
-            processed = smart_preprocess(page)
-            ocr_text = pytesseract.image_to_string(processed, config="--psm 4 --oem 3")
+            processed_image = smart_preprocess(page)
+            ocr_text = pytesseract.image_to_string(processed_image, config="--psm 4 --oem 3")
 
-            with open(f"{output_path}/page{i+1}.txt", "w", encoding="utf-8") as f:
+            text_output_path = os.path.join(output_path, f"page{i + 1}.txt")
+            with open(text_output_path, "w", encoding="utf-8") as f:
                 f.write(ocr_text)
 
-        print("OCR processing complete.")
+            print(f"✅ Saved OCR output to: {text_output_path}")
+
+        print("\n🎉 OCR processing complete.")
 
     except requests.exceptions.RequestException as e:
-        print(f"Failed to download PDF: {e}")
-
-
-   
+        print(f"❌ Failed to download PDF: {e}")
+    except Exception as e:
+        print(f"❌ Unexpected error during OCR processing: {e}")

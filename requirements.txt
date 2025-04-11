@@ -1,10 +1,23 @@
-openai
-python-dotenv
-neo4j
-pytesseract
-pdf2image
-opencv-python
-Pillow
+# Core app dependencies
+flask
 requests
+python-dotenv
+
+# PDF to image conversion
+pdf2image
+Pillow
+
+# OCR
+pytesseract
+opencv-python
+
+# Neo4j driver
+neo4j
+
+# LLM integration
+openai
 langchain
 langchain-openai
+
+# For better typing (esp. on older Python versions)
+typing-extensions

@@ -1,0 +1,34 @@
+services:
+  # === Flask App: Invoice Analyzer ===
+  invoice-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: invoice-analyzer
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - ./datasets:/app/datasets
+      - ./ocr_output:/app/ocr_output
+      - ./formatted_output:/app/formatted_output
+    depends_on:
+      - neo4j
+    restart: unless-stopped
+
+  # === Neo4j Graph DB ===
+  neo4j:
+    image: neo4j:5.16
+    container_name: neo4j-invoice-db
+    ports:
+      - "7474:7474" # Neo4j Browser UI
+      - "7687:7687" # Bolt protocol for app
+    environment:
+      - NEO4J_AUTH=neo4j/del-ai123
+    volumes:
+      - neo4j-data:/data
+    restart: unless-stopped
+
+volumes:
+  neo4j-data:

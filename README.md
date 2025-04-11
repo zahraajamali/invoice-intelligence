@@ -1,13 +1,13 @@
-Absolutely! Here's everything you need:
+Absolutely! Here's your **updated `README.md`** with all the Docker-related changes included:
 
 ---
 
-## 📄 README.md
+## 📄 Updated `README.md`
 
 ```markdown
-# 🧾 Invoice Analyzer and Enricher with Neo4j & GPT
+# 🧾 Invoice Analyzer and Enricher with Neo4j, GPT, and Flask API (Dockerized)
 
-This project automates the extraction of structured invoice data from scanned or PDF invoices using OCR and GPT-4. It enriches invoice information with data from a Neo4j graph database of suppliers and products.
+This project automates the extraction of structured invoice data from scanned or PDF invoices using OCR and GPT-4. It enriches invoice information with data from a Neo4j graph database of suppliers and products and exposes a REST API using Flask.
 
 ---
 
@@ -16,64 +16,54 @@ This project automates the extraction of structured invoice data from scanned or
 - ✅ Extracts structured data from invoice PDFs using OpenAI GPT-4o
 - ✅ Uses OCR (`Tesseract`) to process PDF images
 - ✅ Enriches data by matching suppliers and items from a Neo4j knowledge graph
-- ✅ Supports PDF downloads from secure URLs (with tokens)
+- ✅ REST API to process invoices or sync supplier/product data
+- ✅ Dockerized for easy deployment
 
 ---
 
-## 🧰 Requirements
+## 🧰 Requirements (Local or Docker Host)
 
-- Python 3.8+
-- Tesseract OCR installed
-- Neo4j running locally (or remote)
-- OpenAI API key
-- [Poppler](https://poppler.freedesktop.org/) (for `pdf2image`)
+- Docker & Docker Compose
+- (Optional local run) Python 3.8+ with:
+  - Tesseract OCR
+  - Poppler (`pdf2image`)
+  - Neo4j running locally or remotely
 
 ---
 
-## 📦 Installation
+## 🐳 Docker Setup
 
-### 1. Clone the repository
+### 1. Clone the project
 
 ```bash
 git clone https://github.com/your-username/invoice-analyzer.git
 cd invoice-analyzer
 ```
 
-### 2. Set up virtual environment
+### 2. Add your `.env` configuration
 
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Install external tools
-
-#### Tesseract OCR:
-- **macOS**: `brew install tesseract`
-- **Ubuntu**: `sudo apt install tesseract-ocr`
-- **Windows**: [Download Tesseract](https://github.com/tesseract-ocr/tesseract/wiki)
-
-#### Poppler for `pdf2image`:
-- **macOS**: `brew install poppler`
-- **Ubuntu**: `sudo apt install poppler-utils`
-- **Windows**: [Download Poppler for Windows](http://blog.alivate.com.au/poppler-windows/)
-
----
-
-## 🔐 Environment Setup
-
-Create a `.env` file in the project root:
+Create a `.env` file in the root directory:
 
 ```dotenv
-OPENAI_API_KEY=your_openai_key_here
-HUB_API_TOKEN=your_hub_api_token_here
+OPENAI_API_KEY=your_openai_key
+HUB_API_TOKEN=your_hub_api_token
+API_KEY=your_api_key_for_flask
+
+NEO4J_URI=bolt://neo4j:7687
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=del-ai123
+
+SUPPLIERS_JSON_PATH=datasets/inventory.suppliers.json
+PRODUCTS_JSON_PATH=datasets/inventory.products.json
 ```
+
+### 3. Build and run with Docker Compose
+
+```bash
+docker-compose up --build
+```
+
+> ⏱ It may take a minute to download and build everything.
 
 ---
 
@@ -81,41 +71,81 @@ HUB_API_TOKEN=your_hub_api_token_here
 
 ```
 .
+├── app.py                         # Flask API app
+├── Dockerfile
+├── docker-compose.yml
+├── .env
+├── requirements.txt
 ├── convertFileToText.py
 ├── extractInvoiceData.py
 ├── neo4jService.py
-├── main.py
 ├── datasets/
 │   ├── inventory.suppliers.json
 │   └── inventory.products.json
-├── invoicesFile/
-│   └── invoice2.pdf
 ├── ocr_output/
 ├── formatted_output/
-├── requirements.txt
-└── .env
+└── invoicesFile/
 ```
 
 ---
 
-## ⚙️ How to Use
+## 🌐 Flask API Usage
 
-### Run the full pipeline
+Your API will run on [http://localhost:5000](http://localhost:5000)
+
+Use `X-API-KEY` header (from `.env`) to access protected endpoints.
+
+---
+
+### 🔄 POST `/update-suppliers`
+
+Load suppliers from `datasets/inventory.suppliers.json` into Neo4j.
 
 ```bash
-python main.py
+curl -X POST http://localhost:5000/update-suppliers \
+  -H "X-API-KEY: your_api_key"
 ```
-
-This will:
-1. Download the invoice PDF
-2. Convert it to text using OCR
-3. Extract structured invoice data with GPT-4
-4. Enrich it using Neo4j supplier & product data
-5. Save the final enriched invoice JSON
 
 ---
 
-## 🧪 Sample Output
+### 🔄 POST `/update-products`
+
+Load products from `datasets/inventory.products.json` into Neo4j.
+
+```bash
+curl -X POST http://localhost:5000/update-products \
+  -H "X-API-KEY: your_api_key"
+```
+
+---
+
+### 🧾 POST `/process-invoice`
+
+Trigger the full OCR + GPT + enrichment pipeline using a remote PDF URL.
+
+```bash
+curl -X POST http://localhost:5000/process-invoice \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: your_api_key" \
+  -d '{
+    "file_url": "https://your.server.com/path/to/invoice.pdf",
+    "file_name": "invoice2024"
+}'
+```
+
+---
+
+### 🔍 Neo4j Browser Access
+
+You can explore the data graph visually at:
+
+> 🧠 [http://localhost:7474](http://localhost:7474)  
+> Username: `neo4j`  
+> Password: `del-ai123`
+
+---
+
+## ✅ Sample Output
 
 ```json
 {
@@ -145,13 +175,22 @@ This will:
 - 🧠 OpenAI GPT-4o
 - 🧾 Tesseract OCR
 - 📊 Neo4j
-- 🐍 Python
+- 🌍 Flask
+- 🐳 Docker
+- 🐍 Python 3.10
 
 ---
 
 ## 📬 Contact
 
 Feel free to reach out for collaboration or questions!  
-**Email:** yourname@company.com  
-**GitHub:** [@yourusername](https://github.com/yourusername)
+**Email:** jamzahra33@gmail.com  
+**GitHub:** [@zahraajamali](https://github.com/zahraajamali)
 ```
+
+---
+
+Let me know if you’d like to add:
+- API token authentication
+- Swagger/OpenAPI docs
+- Docker support for the full stack
