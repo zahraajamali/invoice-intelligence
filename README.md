@@ -1,10 +1,3 @@
-Absolutely! Here's your **updated `README.md`** with all the Docker-related changes included:
-
----
-
-## 📄 Updated `README.md`
-
-```markdown
 # 🧾 Invoice Analyzer and Enricher with Neo4j, GPT, and Flask API (Dockerized)
 
 This project automates the extraction of structured invoice data from scanned or PDF invoices using OCR and GPT-4. It enriches invoice information with data from a Neo4j graph database of suppliers and products and exposes a REST API using Flask.
