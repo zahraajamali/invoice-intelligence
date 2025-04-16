@@ -33,6 +33,36 @@ def smart_preprocess(pil_image: Image.Image) -> Image.Image:
 
     return Image.fromarray(thresh)
 
+def convert_bytes_to_text(pdf_bytes: bytes) -> list[str]:
+    """Convert a PDF (given as bytes) into text per page (in memory)."""
+    try:
+        print("📄 Converting PDF bytes to images...")
+        pages = convert_from_bytes(pdf_bytes)
+        all_texts = []
+
+        for i, page in enumerate(pages):
+            print(f"\n📝 Processing page {i + 1}...")
+            angle = detect_rotation(page)
+            print(f"🔄 Detected rotation: {angle}°")
+
+            if angle != 0:
+                page = page.rotate(-angle, expand=True)
+
+            processed_image = smart_preprocess(page)
+            ocr_text = pytesseract.image_to_string(
+                processed_image, config="--psm 4 --oem 3"
+            )
+
+            all_texts.append(ocr_text)
+            print(f"✅ OCR complete for page {i + 1}")
+
+        print("🎉 All pages processed successfully.")
+        return all_texts
+
+    except Exception as e:
+        print(f"❌ Error during in-memory OCR processing: {e}")
+        raise
+
 
 def convert_file_to_text(api_url: str, output_path: str, token: str):
     """Download a PDF from a URL, process it with OCR, and save each page's text."""

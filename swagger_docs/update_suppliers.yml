@@ -1,0 +1,26 @@
+Upload and update supplier data in Neo4j
+---
+tags:
+  - Neo4j Upload
+consumes:
+  - multipart/form-data
+parameters:
+  - in: header
+    name: X-API-KEY
+    type: string
+    required: true
+    description: API key for authentication
+  - in: formData
+    name: suppliers
+    type: file
+    required: true
+    description: JSON file containing supplier data
+responses:
+  200:
+    description: Supplier data updated successfully
+  400:
+    description: Missing file or invalid request
+  401:
+    description: Unauthorized
+  500:
+    description: Internal server error

@@ -21,3 +21,6 @@ langchain-openai
 
 # For better typing (esp. on older Python versions)
 typing-extensions
+
+# Swagger for Flask
+flasgger

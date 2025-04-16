@@ -1,0 +1,42 @@
+Process an invoice from a remote file URL
+---
+tags:
+  - Invoice Processing
+consumes:
+  - application/json
+parameters:
+  - in: header
+    name: X-API-KEY
+    type: string
+    required: true
+    description: API key for authentication
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      properties:
+        file_url:
+          type: string
+          example: "https://example.com/invoice.pdf"
+        file_name:
+          type: string
+          example: "invoice_123"
+      required:
+        - file_url
+responses:
+  200:
+    description: Invoice processed and enriched successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+        data:
+          type: object
+  400:
+    description: Missing file_url or invalid request
+  401:
+    description: Unauthorized
+  500:
+    description: Internal server error

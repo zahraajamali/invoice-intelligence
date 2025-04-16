@@ -89,6 +89,13 @@ class Neo4jService:
         with self.driver.session() as session:
             session.execute_write(_create, items)
 
+    def delete_all_nodes_by_label(self, label):
+        with self.driver.session() as session:
+            session.run(f"""
+                MATCH (n:{label})
+                DETACH DELETE n
+            """)
+
 
     def find_supplier(self, company_name, client_email, threshold=13):
         def _find(tx):
