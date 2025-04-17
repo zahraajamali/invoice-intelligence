@@ -1,21 +1,21 @@
 services:
   # === Flask App: Invoice Analyzer ===
-  # invoice-app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: invoice-analyzer
-  #   ports:
-  #     - "5000:5000"
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - ./datasets:/app/datasets
-  #     - ./ocr_output:/app/ocr_output
-  #     - ./formatted_output:/app/formatted_output
-  #   depends_on:
-  #     - neo4j
-  #   restart: unless-stopped
+  invoice-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: invoice-analyzer
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - ./datasets:/app/datasets
+      - ./ocr_output:/app/ocr_output
+      - ./formatted_output:/app/formatted_output
+    depends_on:
+      - neo4j
+    restart: unless-stopped
 
   # === Neo4j Graph DB ===
   neo4j:
