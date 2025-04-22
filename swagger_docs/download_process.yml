@@ -3,18 +3,27 @@ Process an invoice from a remote file URL
 tags:
   - Invoice Processing
 consumes:
-  - multipart/form-data
+  - application/json
 parameters:
   - in: header
     name: X-API-KEY
     type: string
     required: true
     description: API key for authentication
-  - in: formData
-    name: file
-    type: file
+  - in: body
+    name: body
     required: true
-    description: The invoice PDF file to process
+    schema:
+      type: object
+      properties:
+        file_url:
+          type: string
+          example: "https://example.com/invoice.pdf"
+        file_name:
+          type: string
+          example: "invoice_123"
+      required:
+        - file_url
 responses:
   200:
     description: Invoice processed and enriched successfully

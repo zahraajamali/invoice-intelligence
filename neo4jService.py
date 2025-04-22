@@ -1,6 +1,12 @@
 import json
 import copy
 from neo4j import GraphDatabase
+import logging
+from flask import request, jsonify
+
+# Configure logger for this module
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class Neo4jService:
@@ -24,6 +30,37 @@ class Neo4jService:
         else:
             return data
 
+    
+    def handle_neo4j_upload(self, file_field_name, creator_func):
+        """
+        Flask-compatible helper to process uploaded JSON files and insert them into Neo4j.
+        Should be called from a Flask route.
+        """
+        try:
+            logger.info(f"📤 Handling Neo4j upload for: {file_field_name}")
+
+            if file_field_name not in request.files:
+                logger.warning(f"❌ Missing file part: {file_field_name}")
+                return jsonify({"error": f"No file part named '{file_field_name}' in the request"}), 400
+
+            file = request.files[file_field_name]
+            if file.filename == "":
+                logger.warning(f"❌ Empty filename in upload: {file_field_name}")
+                return jsonify({"error": "No file selected"}), 400
+
+            data = json.load(file)
+            logger.info(f"📦 Loaded {len(data)} records for {file_field_name}")
+
+            cleaned_data = [self.flatten_oid_fields(item) for item in data]
+            creator_func(self, cleaned_data)
+
+            logger.info(f"✅ {file_field_name.capitalize()} data saved to Neo4j")
+            return jsonify({"message": f"✅ {file_field_name.capitalize()} data updated"}), 200
+
+        except Exception as e:
+            logger.exception(f"❌ Error handling upload for {file_field_name}")
+            return jsonify({"error": str(e)}), 500
+    
     def load_clients_from_json(self, path):
         with open(path, "r") as f:
             raw_clients = json.load(f)

@@ -3,9 +3,17 @@ import cv2
 import numpy as np
 import requests
 import pytesseract
+import logging
 
 from PIL import Image
 from pdf2image import convert_from_bytes
+
+# Logging config
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 
 def detect_rotation(pil_image: Image.Image) -> int:
@@ -14,9 +22,12 @@ def detect_rotation(pil_image: Image.Image) -> int:
     try:
         osd = pytesseract.image_to_osd(img, config="--psm 0")
         angle_line = next(line for line in osd.split("\n") if "Rotate:" in line)
-        return int(angle_line.split(":")[1].strip())
-    except Exception:
-        return 0  # fallback if detection fails
+        angle = int(angle_line.split(":")[1].strip())
+        logger.info(f"🔄 Detected rotation: {angle}°")
+        return angle
+    except Exception as e:
+        logger.warning(f"⚠️ Failed to detect rotation: {e}")
+        return 0  # fallback
 
 
 def smart_preprocess(pil_image: Image.Image) -> Image.Image:
@@ -33,17 +44,17 @@ def smart_preprocess(pil_image: Image.Image) -> Image.Image:
 
     return Image.fromarray(thresh)
 
+
 def convert_bytes_to_text(pdf_bytes: bytes) -> list[str]:
     """Convert a PDF (given as bytes) into text per page (in memory)."""
     try:
-        print("📄 Converting PDF bytes to images...")
+        logger.info("📄 Converting PDF bytes to images...")
         pages = convert_from_bytes(pdf_bytes)
         all_texts = []
 
         for i, page in enumerate(pages):
-            print(f"\n📝 Processing page {i + 1}...")
+            logger.info(f"📝 Processing page {i + 1}...")
             angle = detect_rotation(page)
-            print(f"🔄 Detected rotation: {angle}°")
 
             if angle != 0:
                 page = page.rotate(-angle, expand=True)
@@ -54,44 +65,44 @@ def convert_bytes_to_text(pdf_bytes: bytes) -> list[str]:
             )
 
             all_texts.append(ocr_text)
-            print(f"✅ OCR complete for page {i + 1}")
+            logger.info(f"✅ OCR complete for page {i + 1}")
 
-        print("🎉 All pages processed successfully.")
+        logger.info("🎉 All pages processed successfully.")
         return all_texts
 
     except Exception as e:
-        print(f"❌ Error during in-memory OCR processing: {e}")
+        logger.error(f"❌ Error during in-memory OCR processing: {e}", exc_info=True)
         raise
 
 
 def convert_file_to_text(api_url: str, token: str):
     """Download a PDF from a URL, process it with OCR, and save each page's text."""
     try:
-        print(f"📥 Downloading PDF from: {api_url}")
+        logger.info(f"📥 Downloading PDF from: {api_url}")
         headers = {"Authorization": token}
         response = requests.get(api_url, headers=headers)
         response.raise_for_status()
 
-        print("✅ PDF downloaded successfully. Converting to images...")
+        logger.info("✅ PDF downloaded successfully. Converting to images...")
         pdf_bytes = response.content
         pages = convert_from_bytes(pdf_bytes)
 
         for i, page in enumerate(pages):
-            print(f"\n📝 Processing page {i + 1}...")
+            logger.info(f"📝 Processing page {i + 1}...")
             angle = detect_rotation(page)
-            print(f"🔄 Detected rotation: {angle}°")
 
             if angle != 0:
                 page = page.rotate(-angle, expand=True)
 
             processed_image = smart_preprocess(page)
-            ocr_text = pytesseract.image_to_string(processed_image, config="--psm 4 --oem 3")
+            ocr_text = pytesseract.image_to_string(
+                processed_image, config="--psm 4 --oem 3"
+            )
 
+            logger.info("✅ OCR processing complete.")
             return ocr_text
 
-        print("\n🎉 OCR processing complete.")
-
     except requests.exceptions.RequestException as e:
-        print(f"❌ Failed to download PDF: {e}")
+        logger.error(f"❌ Failed to download PDF: {e}", exc_info=True)
     except Exception as e:
-        print(f"❌ Unexpected error during OCR processing: {e}")
+        logger.error(f"❌ Unexpected error during OCR processing: {e}", exc_info=True)
