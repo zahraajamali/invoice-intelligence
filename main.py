@@ -7,6 +7,7 @@ from flask import Flask, request, jsonify
 from convertFileToText import convert_file_to_text
 from extractInvoiceData import extract_invoice_data_from_gpt
 from neo4jService import Neo4jService
+from create_invoice_format import transform_invoice
 
 def main():
     try:
@@ -44,7 +45,8 @@ def main():
 
 
         neo4j.close()
-        return print("✅ Invoice processed",  enriched_invoice)
+        transformed_invoice = transform_invoice(enriched_invoice)
+        return print("✅ Invoice processed",  transformed_invoice)
 
     except Exception:
         print("❌ An error occurred during invoice processing:")
