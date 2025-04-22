@@ -2,6 +2,7 @@ import os
 import json
 import traceback
 from dotenv import load_dotenv
+from flask import Flask, request, jsonify
 
 from convertFileToText import convert_file_to_text
 from extractInvoiceData import extract_invoice_data_from_gpt
@@ -14,7 +15,6 @@ def main():
         openai_api_key = os.getenv("OPENAI_API_KEY")
         hub_api_token = os.getenv("HUB_API_TOKEN")
 
-        file_name = os.getenv("INVOICE_FILE_NAME")
         pdf_url = os.getenv("INVOICE_FILE_URL")
 
         neo4j_uri = os.getenv("NEO4J_URI")
@@ -24,18 +24,11 @@ def main():
         suppliers_path = os.getenv("SUPPLIERS_JSON_PATH")
         products_path = os.getenv("PRODUCTS_JSON_PATH")
 
-        # Step 1: Setup directories
-        output_dir = f"ocr_output/{file_name}"
-        final_result_dir = f"formatted_output/{file_name}"
-        os.makedirs(output_dir, exist_ok=True)
-        os.makedirs(final_result_dir, exist_ok=True)
-
         # Step 2: Convert PDF to text
-        convert_file_to_text(pdf_url, output_dir, hub_api_token)
+        ocr_text=convert_file_to_text(pdf_url, hub_api_token)
 
         # Step 3: Extract invoice data using GPT
-        text_path = f"{output_dir}/page1.txt"
-        invoice_data = extract_invoice_data_from_gpt(openai_api_key, text_path)
+        invoice_data = extract_invoice_data_from_gpt(openai_api_key, ocr_text)
         print("Extracted invoice data:", invoice_data)
 
         if not invoice_data:
@@ -49,13 +42,9 @@ def main():
 
         enriched_invoice = neo4j.enrich_invoice(invoice_data)
 
-        # Step 5: Save enriched data
-        output_file = f"{final_result_dir}/enriched_{file_name}.json"
-        with open(output_file, "w", encoding="utf-8") as f:
-            json.dump(enriched_invoice, f, indent=2, ensure_ascii=False)
 
         neo4j.close()
-        print(f"✅ Enriched invoice saved to: {output_file}")
+        return print("✅ Invoice processed",  enriched_invoice)
 
     except Exception:
         print("❌ An error occurred during invoice processing:")
