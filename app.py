@@ -9,6 +9,8 @@ from convertFileToText import convert_file_to_text
 from extractInvoiceData import extract_invoice_data_from_gpt
 from flasgger import Swagger, swag_from
 
+from create_invoice_format import transform_invoice
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -121,7 +123,8 @@ def process_invoice():
         enriched = neo4j.enrich_invoice(invoice_data)
         neo4j.close()
 
-        return jsonify({"message": "✅ Invoice processed", "data": enriched}), 200
+        transformed_invoice = transform_invoice(enriched)
+        return jsonify({"message": "✅ Invoice processed", "data": transformed_invoice}), 200
 
     except Exception as e:
         traceback.print_exc()
