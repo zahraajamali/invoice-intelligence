@@ -78,13 +78,12 @@ def clean_llm_json_response(response_content: str) -> str:
     return re.sub(r"^```json\s*|\s*```$", "", response_content.strip())
 
 
-def extract_invoice_data_from_gpt(openai_api_key: str, invoice_file_path: str) -> dict | None:
+def extract_invoice_data_from_gpt(openai_api_key: str, invoice_text: str) -> dict | None:
     """
     Extract structured invoice data from a text file using GPT.
     
     Returns a dictionary if successful, or None if the file is empty or extraction fails.
     """
-    invoice_text = read_text_file(invoice_file_path)
     if not invoice_text:
         return None
 

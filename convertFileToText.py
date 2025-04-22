@@ -64,7 +64,7 @@ def convert_bytes_to_text(pdf_bytes: bytes) -> list[str]:
         raise
 
 
-def convert_file_to_text(api_url: str, output_path: str, token: str):
+def convert_file_to_text(api_url: str, token: str):
     """Download a PDF from a URL, process it with OCR, and save each page's text."""
     try:
         print(f"📥 Downloading PDF from: {api_url}")
@@ -75,8 +75,6 @@ def convert_file_to_text(api_url: str, output_path: str, token: str):
         print("✅ PDF downloaded successfully. Converting to images...")
         pdf_bytes = response.content
         pages = convert_from_bytes(pdf_bytes)
-
-        os.makedirs(output_path, exist_ok=True)
 
         for i, page in enumerate(pages):
             print(f"\n📝 Processing page {i + 1}...")
@@ -89,11 +87,7 @@ def convert_file_to_text(api_url: str, output_path: str, token: str):
             processed_image = smart_preprocess(page)
             ocr_text = pytesseract.image_to_string(processed_image, config="--psm 4 --oem 3")
 
-            text_output_path = os.path.join(output_path, f"page{i + 1}.txt")
-            with open(text_output_path, "w", encoding="utf-8") as f:
-                f.write(ocr_text)
-
-            print(f"✅ Saved OCR output to: {text_output_path}")
+            return ocr_text
 
         print("\n🎉 OCR processing complete.")
 

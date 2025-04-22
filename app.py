@@ -101,22 +101,15 @@ def process_invoice():
     try:
         data = request.get_json()
         file_url = data.get("file_url")
-        file_name = data.get("file_name", "invoice")
 
         if not file_url:
             return jsonify({"error": "Missing 'file_url' in request"}), 400
 
-        output_dir = f"ocr_output/{file_name}"
-        final_result_dir = f"formatted_output/{file_name}"
-        os.makedirs(output_dir, exist_ok=True)
-        os.makedirs(final_result_dir, exist_ok=True)
-
         # Convert file to text
-        convert_file_to_text(file_url, output_dir, HUB_API_TOKEN)
+        ocr_text=convert_file_to_text(file_url, HUB_API_TOKEN)
 
         # Extract data using GPT
-        invoice_text_path = f"{output_dir}/page1.txt"
-        invoice_data = extract_invoice_data_from_gpt(OPENAI_API_KEY, invoice_text_path)
+        invoice_data = extract_invoice_data_from_gpt(OPENAI_API_KEY, ocr_text)
 
         if not invoice_data:
             return jsonify({"error": "Invoice extraction failed"}), 500
@@ -127,10 +120,6 @@ def process_invoice():
         neo4j.create_items(neo4j.load_items_from_json(PRODUCTS_JSON_PATH))
         enriched = neo4j.enrich_invoice(invoice_data)
         neo4j.close()
-
-        result_path = f"{final_result_dir}/enriched_{file_name}.json"
-        with open(result_path, "w", encoding="utf-8") as f:
-            json.dump(enriched, f, indent=2, ensure_ascii=False)
 
         return jsonify({"message": "✅ Invoice processed", "data": enriched}), 200
 
