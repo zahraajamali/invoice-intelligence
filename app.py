@@ -149,16 +149,13 @@ def process_invoice():
 
         pdf_bytes = file.read()
 
-        result = extract_invoice_data_from_pdf(pdf_bytes)
+        invoice_data = extract_invoice_data_from_pdf(pdf_bytes)
 
     
-        if result:
-            invoice_data = json.dumps(result, indent=2, ensure_ascii=False)
-        else:
+        if not invoice_data:
             logger.error("❌ Invoice extraction failed")
             return jsonify({"error": "Invoice extraction failed"}), 500
         
-    
 
         logger.info("🔌 Connecting to Neo4j to enrich invoice data")
         neo4j = Neo4jService(NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD)

@@ -106,12 +106,13 @@ If any field is not found or is not applicable, return `null` for that field.
 
         reply = response.choices[0].message.content
         cleaned_reply = clean_llm_json_response(reply)
+        print(cleaned_reply)
 
         try:
             return json.loads(cleaned_reply)
         except json.JSONDecodeError:
-            print("⚠️ Could not parse JSON, returning raw output.")
-            return {"raw_output": reply}
+            print("❌ GPT-4o could not parse JSON, returning raw output", e)
+            return None
 
     except Exception as e:
         print("❌ GPT-4o Vision extraction failed:", e)
