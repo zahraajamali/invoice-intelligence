@@ -12,6 +12,7 @@ from create_invoice_format import transform_invoice
 import logging
 import atexit
 from functools import wraps
+from useOpenAiToParseInvoice import extract_invoice_data_from_pdf
 
 # Logging configuration
 logging.basicConfig(
@@ -147,18 +148,17 @@ def process_invoice():
         logger.info(f"📄 File received: {file.filename}")
 
         pdf_bytes = file.read()
-        logger.info("🧪 Performing OCR on uploaded file")
-        ocr_pages = convert_bytes_to_text(pdf_bytes)
-        ocr_text = "\n".join(ocr_pages)
-        logger.info("✅ OCR completed successfully")
 
-        # Extract data using GPT
-        logger.info("🧠 Extracting invoice data using GPT...")
-        invoice_data = extract_invoice_data_from_gpt(OPENAI_API_KEY, ocr_text)
+        result = extract_invoice_data_from_pdf(pdf_bytes)
 
-        if not invoice_data:
+    
+        if result:
+            invoice_data = json.dumps(result, indent=2, ensure_ascii=False)
+        else:
             logger.error("❌ Invoice extraction failed")
             return jsonify({"error": "Invoice extraction failed"}), 500
+        
+    
 
         logger.info("🔌 Connecting to Neo4j to enrich invoice data")
         neo4j = Neo4jService(NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD)

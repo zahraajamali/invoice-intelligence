@@ -1,107 +1,146 @@
 import openai
-import os
-import time
 import json
-from dotenv import load_dotenv
+import os
+import logging
+import requests
+import re
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+import base64
+from pdf2image import convert_from_bytes
+from io import BytesIO
+from PIL import Image
 
-# 1. Upload your file (PDF)
-file_path = "invoicesFile/invoice2.pdf"
-file = openai.files.create(
-    file=open(file_path, "rb"),
-    purpose="assistants"
+def pdf_to_base64_image(pdf_bytes):
+    """Convert the first page of a PDF to base64-encoded PNG image."""
+    images = convert_from_bytes(pdf_bytes)
+    buffer = BytesIO()
+    images[0].save(buffer, format="PNG")
+    img_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return f"data:image/png;base64,{img_str}"
+
+def clean_llm_json_response(response_content: str) -> str:
+    """Removes triple backticks and ensures clean JSON string."""
+    return re.sub(r"^```json\s*|\s*```$", "", response_content.strip())
+
+def extract_invoice_data_from_pdf(pdf_bytes: bytes) -> dict | None:
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+
+    try:
+        image_base64 = pdf_to_base64_image(pdf_bytes)
+
+        response = openai.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a professional Spanish invoice analyzer and data extractor."
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": (
+                                """ 
+Read the following unstructured invoice text and return all relevant data in a well-structured JSON format. 
+**Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** with this information:
+{{
+  address: Pz Mercat La Cava nº 1 Local Delinternet  
+  43580 DELTEBRE  
+  Tarragona  
+  N.I.F : B55606446
+}} — so only extract **provider information** and **invoice details**.
+
+If any field is not found or is not applicable, return `null` for that field.
+
+✅ The required JSON format is:
+
+{{
+  "invoice_number": ..., // Also appears as "NUM. FACTURA", "NÚMERO FACTURA"
+  "invoice_date": ...,   // Also appears as "DATA FACTURA", "FECHA FACTURA"
+  "provider": {{
+    "name": ...,
+    "address": ...,
+    "contact": {{
+      "email": ...,
+      "phone": ...,
+      "fax": ...,
+      "mobile": ...
+    }},
+    "VAT_NUMBER/NIE/CIF": ...
+  }},
+  "items": [
+    {{
+      "quantity": ...,
+      "description": ...,
+      "project": ...,
+      "unit_price": ...,
+      "total": ...
+    }}
+  ],
+  "total": {{
+    "base_amount": ...,
+    "VAT_rate": ...,
+    "VAT_amount": ...,
+    "IRPF_rate": ...,
+    "IRPF_amount": ...,
+    "total_invoice": ...
+  }},
+  "description": "<Any extra relevant information, notes, or context from the invoice not covered by the fields above.>"
+}}
+
+---
+"""
+                            )
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": image_base64
+                            }
+                        }
+                    ]
+                }
+            ]
+        )
+
+        reply = response.choices[0].message.content
+        cleaned_reply = clean_llm_json_response(reply)
+
+        try:
+            return json.loads(cleaned_reply)
+        except json.JSONDecodeError:
+            print("⚠️ Could not parse JSON, returning raw output.")
+            return {"raw_output": reply}
+
+    except Exception as e:
+        print("❌ GPT-4o Vision extraction failed:", e)
+        return None
+
+# Logging config
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
 )
+logger = logging.getLogger(__name__)
 
-# 2. Create an Assistant
-assistant = openai.beta.assistants.create(
-    name="Invoice Extractor",
-    instructions="""
-    You are a professional invoice analyzer.
-    Extract invoice data from the attached PDF and return it in this JSON format:
-    
-    {
-      "invoice_number": ...,
-      "invoice_date": ...,
-      "provider": {
-        "name": ...,
-        "address": ...,
-        "contact": {
-          "email": ...,
-          "phone": ...,
-          "fax": ...,
-          "mobile": ...
-        },
-        "C.I.F.": ...
-      },
-      "items": [
-        {
-          "quantity": ...,
-          "description": ...,
-          "project": ...,
-          "unit_price": ...,
-          "total": ...
-        }
-      ],
-      "total": {
-        "base_amount": ...,
-        "VAT_rate": ...,
-        "VAT_amount": ...,
-        "total_invoice": ...
-      },
-      "description": "<Any extra relevant info or context from the invoice>"
-    }
-    """,
-    model="gpt-4o"
-)
+# if __name__ == "__main__":
+#     API_KEY = os.getenv("OPENAI_API_KEY")  # Replace with your OpenAI API key
+#     # PDF_PATH = "path/to/your/invoice.pdf"
+#     hub_api_token = os.getenv("HUB_API_TOKEN")
+#     pdf_url = "https://inventory-server.prd.delinternet.com/api/v1/files/79c4a4c73d75e82d76768d0afbe01b0a715da6fe4c576f3d5c2f2515e53865ae.pdf"
 
-# 3. Create a thread and attach the file
-thread = openai.beta.threads.create()
+#     logger.info(f"📥 Downloading PDF from: {pdf_url}")
+#     headers = {"Authorization": hub_api_token}
+#     response = requests.get(pdf_url, headers=headers)
+#     response.raise_for_status()
 
-# 4. Send message with file
-message = openai.beta.threads.messages.create(
-    thread_id=thread.id,
-    role="user",
-    content="Please analyze this invoice PDF and extract the data as structured JSON.",
-    attachments=[
-        {
-            "file_id": file.id,
-            "tools": [{"type": "file_search"}]
-        }
-    ]
-)
+#     logger.info("✅ PDF downloaded successfully. Converting to images...")
+#     pdf_bytes = response.content
 
-# 5. Run the assistant on the thread
-run = openai.beta.threads.runs.create(
-    thread_id=thread.id,
-    assistant_id=assistant.id
-)
+#     result = extract_invoice_data_from_pdf(API_KEY, pdf_bytes)
 
-# 6. Wait for completion
-while True:
-    run_status = openai.beta.threads.runs.retrieve(
-        thread_id=thread.id,
-        run_id=run.id
-    )
-    if run_status.status == "completed":
-        break
-    elif run_status.status == "failed":
-        raise Exception("Run failed.")
-    time.sleep(1)
-
-# 7. Get the response
-messages = openai.beta.threads.messages.list(thread_id=thread.id)
-
-# 8. Extract JSON from the last assistant message
-response_content = messages.data[0].content[0].text.value
-print(response_content)
-
-# 9. Clean and load JSON if needed
-try:
-    clean_json = response_content.strip().strip("```json").strip("```")
-    invoice_data = json.loads(clean_json)
-    print(json.dumps(invoice_data, indent=2))
-except Exception as e:
-    print("Failed to parse JSON:", e)
-    print(response_content)
+#     if result:
+#         print(json.dumps(result, indent=2, ensure_ascii=False))
+#     else:
+#         print("❌ No data extracted.")
