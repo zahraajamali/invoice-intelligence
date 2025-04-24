@@ -1,6 +1,67 @@
 import re
 import json
 from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
+
+# ---------------- STEP 2: Function Schema ---------------- #
+invoice_schema = {
+    "name": "extract_invoice_data",
+    "description": "Extract structured invoice data from an unstructured invoice text.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "invoice_number": {"type": "string"},
+            "invoice_date": {"type": "string"},
+            "provider": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "address": {"type": "string"},
+                    "contact": {
+                        "type": "object",
+                        "properties": {
+                            "email": {"type": ["string", "null"]},
+                            "phone": {"type": ["string", "null"]},
+                            "fax": {"type": ["string", "null"]},
+                            "mobile": {"type": ["string", "null"]}
+                        },
+                        "required": ["email", "phone", "fax", "mobile"]
+                    },
+                    "VAT_NUMBER/NIE/CIF": {"type": "string"}
+                },
+                "required": ["name", "address", "contact", "VAT_NUMBER/NIE/CIF"]
+            },
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "quantity": {"type": "string"},
+                        "description": {"type": "string"},
+                        "project": {"type": ["string", "null"]},
+                        "unit_price": {"type": "string"},
+                        "total": {"type": "string"}
+                    },
+                    "required": ["quantity", "description", "unit_price", "total", "project"]
+                }
+            },
+            "total": {
+                "type": "object",
+                "properties": {
+                    "base_amount": {"type": "string"},
+                    "VAT_rate": {"type": "string"},
+                    "VAT_amount": {"type": "string"},
+                    "IRPF_rate": {"type": ["string", "null"]},
+                    "IRPF_amount": {"type": ["string", "null"]},
+                    "total_invoice": {"type": "string"}
+                },
+                "required": ["base_amount", "VAT_rate", "VAT_amount", "IRPF_rate", "IRPF_amount", "total_invoice"]
+            },
+            "description": {"type": "string"}
+        },
+        "required": ["invoice_number", "invoice_date", "provider", "items", "total", "description"]
+    }
+}
 
 
 INVOICE_EXTRACTION_PROMPT_TEMPLATE = """
@@ -89,6 +150,17 @@ def extract_invoice_data_from_gpt(openai_api_key: str, invoice_text: str) -> dic
 
     prompt = build_invoice_extraction_prompt(invoice_text)
 
+    prompt = f"""You are a professional invoice analyzer and data extractor.
+
+Read the following unstructured invoice text and return all relevant data in a well-structured JSON format. 
+**Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** with this information:
+{{
+  address: Pz Mercat La Cava nº 1 Local Delinternet  
+  43580 DELTEBRE  
+  Tarragona  
+  N.I.F : B55606446
+}} — so only extract **provider information** and **invoice details**.\n\n---\n{invoice_text}\n---"""
+
     llm = ChatOpenAI(
         openai_api_key=openai_api_key,
         temperature=0,
@@ -96,9 +168,18 @@ def extract_invoice_data_from_gpt(openai_api_key: str, invoice_text: str) -> dic
     )
 
     try:
-        response = llm.invoke(prompt)
-        cleaned_json_str = clean_llm_json_response(response.content)
-        return json.loads(cleaned_json_str)
+      response = llm.invoke(
+            [HumanMessage(content=prompt)],
+            functions=[invoice_schema]
+        )
+      if "function_call" in response.additional_kwargs:
+          args = json.loads(response.additional_kwargs["function_call"]["arguments"])
+          return json.dumps(args, indent=2)
+      else:
+          print("❌ No structured response returned.")
+          return None
     except Exception as e:
-        print("❌ Failed to extract invoice data:", e)
-        return None
+      print("❌ Error during GPT call:", e)
+      return None
+
+
