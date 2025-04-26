@@ -12,7 +12,7 @@ from create_invoice_format import transform_invoice
 import logging
 import atexit
 from functools import wraps
-
+from invoice_processor import extract_invoice_data_from_uploaded_file
 # Logging configuration
 logging.basicConfig(
     level=logging.INFO,
@@ -135,48 +135,32 @@ def process_invoice():
     try:
         logger.info("📥 Received file upload for invoice processing")
 
+        # Check file in request
         if 'file' not in request.files:
             logger.warning("⚠️ Missing 'file' in request")
             return jsonify({"error": "Missing file in request"}), 400
 
         file = request.files['file']
+
         if file.filename == '':
             logger.warning("⚠️ No file selected")
             return jsonify({"error": "No selected file"}), 400
 
-        logger.info(f"📄 File received: {file.filename}")
+        logger.info(f"📄 Processing file: {file.filename}")
 
-        pdf_bytes = file.read()
-        logger.info("🧪 Performing OCR on uploaded file")
-        ocr_pages = convert_bytes_to_text(pdf_bytes)
-        ocr_text = "\n".join(ocr_pages)
-        logger.info("✅ OCR completed successfully")
+        # ✅ Call service function to process invoice
+        invoice_data = extract_invoice_data_from_uploaded_file(file)
 
-        # Extract data using GPT
-        logger.info("🧠 Extracting invoice data using GPT...")
-        invoice_data = extract_invoice_data_from_gpt(OPENAI_API_KEY, ocr_text)
+        if invoice_data is None:
+            logger.error("❌ Failed to extract invoice data")
+            return jsonify({"error": "Failed to extract data from invoice"}), 500
 
-        if not invoice_data:
-            logger.error("❌ Invoice extraction failed")
-            return jsonify({"error": "Invoice extraction failed"}), 500
-
-        logger.info("🔌 Connecting to Neo4j to enrich invoice data")
-        neo4j = Neo4jService(NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD)
-        neo4j.create_clients(neo4j.load_clients_from_json(SUPPLIERS_JSON_PATH))
-        neo4j.create_items(neo4j.load_items_from_json(PRODUCTS_JSON_PATH))
-        enriched = neo4j.enrich_invoice(invoice_data)
-        neo4j.close()
-        logger.info("🧩 Invoice enrichment completed")
-
-        transformed_invoice = transform_invoice(enriched)
-        logger.info("📦 Invoice successfully transformed and returned")
-
-        return jsonify({"message": "✅ Invoice processed", "data": transformed_invoice}), 200
+        logger.info("✅ Successfully extracted invoice data")
+        return jsonify(invoice_data), 200
 
     except Exception as e:
-        logger.exception("❌ Error occurred during uploaded invoice processing")
+        logger.exception(f"❌ Exception during invoice processing: {e}")
         return jsonify({"error": str(e)}), 500
-
 
 @atexit.register
 def shutdown():
