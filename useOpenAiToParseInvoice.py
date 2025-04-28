@@ -4,6 +4,7 @@ import os
 import logging
 import requests
 import re
+import time
 
 import base64
 from pdf2image import convert_from_bytes
@@ -45,7 +46,7 @@ invoice_schema = {
                     "properties": {
                         "quantity": {"type": "number"},
                         "description": {"type": "string"},
-                        "project": {"type": ["string", "null"]},
+                        "unit": {"type": ["string", "null"]},
                         "unit_price": {"type": "number"},
                         "total": {"type": "number"}
                     },
@@ -71,12 +72,15 @@ invoice_schema = {
 }
 
 def pdf_to_base64_image(pdf_bytes):
-    """Convert the first page of a PDF to base64-encoded PNG image."""
+    """Convert all pages of a PDF to a list of base64-encoded PNG images."""
     images = convert_from_bytes(pdf_bytes)
-    buffer = BytesIO()
-    images[0].save(buffer, format="PNG")
-    img_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
-    return f"data:image/png;base64,{img_str}"
+    base64_images = []
+    for image in images:
+        buffer = BytesIO()
+        image.save(buffer, format="PNG")
+        img_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
+        base64_images.append(f"data:image/png;base64,{img_str}")
+    return base64_images
 
 def clean_llm_json_response(response_content: str) -> str:
     """Removes triple backticks and ensures clean JSON string."""
@@ -86,47 +90,68 @@ def extract_invoice_data_from_pdf(pdf_bytes: bytes) -> dict | None:
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
     try:
-        image_base64 = pdf_to_base64_image(pdf_bytes)
+        image_base64_list = pdf_to_base64_image(pdf_bytes)
+        t1 = time.perf_counter()
+
+        messages = []
+
+        messages.append({
+            "role": "system",
+            "content": "You are a professional Spanish invoice analyzer and data extractor."
+        })
+
+        messages.append({
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": (
+                        """ 
+                        Read the following unstructured invoice text and return all relevant data in a well-structured JSON format. 
+                        **Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** with this information:
+                        {{
+                        address: Pz Mercat La Cava nº 1 Local Delinternet  
+                        43580 DELTEBRE  
+                        Tarragona  
+                        N.I.F : B55606446
+                        }} — so only extract **provider information** and **invoice details**.
+                        """
+                    )
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": image_base64_list[0] 
+                    }
+                }
+            ]
+        })
+
+        for img_str in image_base64_list[1:]:
+            messages.append({
+                "role": "user",
+                "content": [
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": img_str
+                        }
+                    }
+                ]
+            })
 
         response = openai.chat.completions.create(
             model="gpt-4o",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a professional Spanish invoice analyzer and data extractor."
-                },
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": (
-                                """ 
-                                    Read the following unstructured invoice text and return all relevant data in a well-structured JSON format. 
-                                    **Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** with this information:
-                                    {{
-                                    address: Pz Mercat La Cava nº 1 Local Delinternet  
-                                    43580 DELTEBRE  
-                                    Tarragona  
-                                    N.I.F : B55606446
-                                    }} — so only extract **provider information** and **invoice details**.
-                                    """
-                            )
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": image_base64
-                            }
-                        }
-                    ]
-                }
-            ],
+            messages=messages,
             functions=[invoice_schema],
             function_call={"name": "extract_invoice_data"}
         )
 
+        t2 = time.perf_counter()
+        print(f"⏱️ OpenAI API call time: {t2 - t1:.2f} seconds")
+
         function_response = response.choices[0].message.function_call
+
         if function_response and function_response.arguments:
             parsed_args = json.loads(function_response.arguments)
             return parsed_args
@@ -137,6 +162,7 @@ def extract_invoice_data_from_pdf(pdf_bytes: bytes) -> dict | None:
     except Exception as e:
         print("❌ GPT-4o Vision extraction failed:", e)
         return None
+
 
 # Logging config
 logging.basicConfig(
