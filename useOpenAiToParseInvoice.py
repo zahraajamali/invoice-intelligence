@@ -10,6 +10,66 @@ from pdf2image import convert_from_bytes
 from io import BytesIO
 from PIL import Image
 
+
+invoice_schema = {
+    "name": "extract_invoice_data",
+    "description": "Extract structured invoice data from an unstructured invoice text.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "invoice_number": {"type": "string"},
+            "invoice_date": {"type": "string"},
+            "provider": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "address": {"type": "string"},
+                    "contact": {
+                        "type": "object",
+                        "properties": {
+                            "email": {"type": ["string", "null"]},
+                            "phone": {"type": ["string", "null"]},
+                            "fax": {"type": ["string", "null"]},
+                            "mobile": {"type": ["string", "null"]}
+                        },
+                        "required": ["email", "phone", "fax", "mobile"]
+                    },
+                    "VAT_NUMBER/NIE/CIF": {"type": "string"}
+                },
+                "required": ["name", "address", "contact", "VAT_NUMBER/NIE/CIF"]
+            },
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "quantity": {"type": "number"},
+                        "description": {"type": "string"},
+                        "project": {"type": ["string", "null"]},
+                        "unit_price": {"type": "number"},
+                        "total": {"type": "number"}
+                    },
+                    "required": ["quantity", "description", "unit_price", "total", "project"]
+                }
+            },
+            "total": {
+                "type": "object",
+                "properties": {
+                    "base_amount": {"type": "number"},
+                    "VAT_rate": {"type": "number"},
+                    "VAT_amount": {"type": "number"},
+                    "IRPF_rate": {"type": ["number", "null"]},
+                    "IRPF_amount": {"type": ["number", "null"]},
+                    "total_invoice": {"type": "number"}
+                },
+                "required": ["base_amount", "VAT_rate", "VAT_amount", "IRPF_rate", "IRPF_amount", "total_invoice"]
+            },
+            "description": {"type": "string"}
+        },
+        "required": ["invoice_number", "invoice_date", "provider", "items", "total", "description"]
+    }
+}
+
 def pdf_to_base64_image(pdf_bytes):
     """Convert the first page of a PDF to base64-encoded PNG image."""
     images = convert_from_bytes(pdf_bytes)
@@ -42,55 +102,15 @@ def extract_invoice_data_from_pdf(pdf_bytes: bytes) -> dict | None:
                             "type": "text",
                             "text": (
                                 """ 
-Read the following unstructured invoice text and return all relevant data in a well-structured JSON format. 
-**Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** with this information:
-{{
-  address: Pz Mercat La Cava nº 1 Local Delinternet  
-  43580 DELTEBRE  
-  Tarragona  
-  N.I.F : B55606446
-}} — so only extract **provider information** and **invoice details**.
-
-If any field is not found or is not applicable, return `null` for that field.
-
-✅ The required JSON format is:
-
-{{
-  "invoice_number": ..., // Also appears as "NUM. FACTURA", "NÚMERO FACTURA"
-  "invoice_date": ...,   // Also appears as "DATA FACTURA", "FECHA FACTURA"
-  "provider": {{
-    "name": ...,
-    "address": ...,
-    "contact": {{
-      "email": ...,
-      "phone": ...,
-      "fax": ...,
-      "mobile": ...
-    }},
-    "VAT_NUMBER/NIE/CIF": ...
-  }},
-  "items": [
-    {{
-      "quantity": ...,
-      "description": ...,
-      "project": ...,
-      "unit_price": ...,
-      "total": ...
-    }}
-  ],
-  "total": {{
-    "base_amount": ...,
-    "VAT_rate": ...,
-    "VAT_amount": ...,
-    "IRPF_rate": ...,
-    "IRPF_amount": ...,
-    "total_invoice": ...
-  }},
-  "description": "<Any extra relevant information, notes, or context from the invoice not covered by the fields above.>"
-}}
-
----
-"""
+                                    Read the following unstructured invoice text and return all relevant data in a well-structured JSON format. 
+                                    **Note:** In every invoice, the client is always **DEL-INTERNET TELECOM, S.L.U.** with this information:
+                                    {{
+                                    address: Pz Mercat La Cava nº 1 Local Delinternet  
+                                    43580 DELTEBRE  
+                                    Tarragona  
+                                    N.I.F : B55606446
+                                    }} — so only extract **provider information** and **invoice details**.
+                                    """
                             )
                         },
                         {
@@ -101,17 +121,17 @@ If any field is not found or is not applicable, return `null` for that field.
                         }
                     ]
                 }
-            ]
+            ],
+            functions=[invoice_schema],
+            function_call={"name": "extract_invoice_data"}
         )
 
-        reply = response.choices[0].message.content
-        cleaned_reply = clean_llm_json_response(reply)
-        print(cleaned_reply)
-
-        try:
-            return json.loads(cleaned_reply)
-        except json.JSONDecodeError:
-            print("❌ GPT-4o could not parse JSON, returning raw output", e)
+        function_response = response.choices[0].message.function_call
+        if function_response and function_response.arguments:
+            parsed_args = json.loads(function_response.arguments)
+            return parsed_args
+        else:
+            print("❌ GPT-4o could not parse JSON, returning raw output")
             return None
 
     except Exception as e:
@@ -124,24 +144,3 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
 logger = logging.getLogger(__name__)
-
-# if __name__ == "__main__":
-#     API_KEY = os.getenv("OPENAI_API_KEY")  # Replace with your OpenAI API key
-#     # PDF_PATH = "path/to/your/invoice.pdf"
-#     hub_api_token = os.getenv("HUB_API_TOKEN")
-#     pdf_url = "https://inventory-server.prd.delinternet.com/api/v1/files/79c4a4c73d75e82d76768d0afbe01b0a715da6fe4c576f3d5c2f2515e53865ae.pdf"
-
-#     logger.info(f"📥 Downloading PDF from: {pdf_url}")
-#     headers = {"Authorization": hub_api_token}
-#     response = requests.get(pdf_url, headers=headers)
-#     response.raise_for_status()
-
-#     logger.info("✅ PDF downloaded successfully. Converting to images...")
-#     pdf_bytes = response.content
-
-#     result = extract_invoice_data_from_pdf(API_KEY, pdf_bytes)
-
-#     if result:
-#         print(json.dumps(result, indent=2, ensure_ascii=False))
-#     else:
-#         print("❌ No data extracted.")
