@@ -144,7 +144,8 @@ def extract_invoice_data_from_pdf(pdf_bytes: bytes) -> dict | None:
             model="gpt-4o",
             messages=messages,
             functions=[invoice_schema],
-            function_call={"name": "extract_invoice_data"}
+            function_call={"name": "extract_invoice_data"},
+            temperature=0
         )
 
         t2 = time.perf_counter()
