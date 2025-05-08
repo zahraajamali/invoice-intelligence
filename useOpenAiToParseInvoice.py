@@ -9,7 +9,7 @@ import time
 import base64
 from pdf2image import convert_from_bytes
 from io import BytesIO
-from PIL import Image
+from PIL import ImageEnhance
 
 
 invoice_schema = {
@@ -71,9 +71,15 @@ invoice_schema = {
     }
 }
 
+def enhance_image(image):
+    img = image.convert("L")  # Grayscale
+    enhancer = ImageEnhance.Contrast(img)
+    img = enhancer.enhance(2.0)  # Increase contrast
+    return img
+
 def pdf_to_base64_image(pdf_bytes):
     """Convert all pages of a PDF to a list of base64-encoded PNG images."""
-    images = convert_from_bytes(pdf_bytes)
+    images = convert_from_bytes(pdf_bytes, dpi=300)
     base64_images = []
     for image in images:
         buffer = BytesIO()
