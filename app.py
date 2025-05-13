@@ -4,15 +4,15 @@ from dotenv import load_dotenv
 import json
 import traceback
 import json
-from extract_invoice_with_ocr.neo4jService import Neo4jService
-from extract_invoice_with_ocr.convertFileToText import convert_bytes_to_text , convert_file_to_text
-from extract_invoice_with_ocr.extractInvoiceData import extract_invoice_data_from_gpt
+from neo4jService import Neo4jService
+from convertFileToText import convert_bytes_to_text , convert_file_to_text
+from extractInvoiceData import extract_invoice_data_from_gpt
 from flasgger import Swagger, swag_from
-from extract_invoice_with_ocr.create_invoice_format import transform_invoice
+from create_invoice_format import transform_invoice
 import logging
 import atexit
 from functools import wraps
-from extract_invoice_with_ocr.useOpenAiToParseInvoice import extract_invoice_data_from_pdf
+from useOpenAiToParseInvoice import extract_invoice_data_from_pdf
 
 # Logging configuration
 logging.basicConfig(
