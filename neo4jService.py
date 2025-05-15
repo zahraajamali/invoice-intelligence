@@ -70,33 +70,37 @@ class Neo4jService:
         with open(path, "r") as f:
             raw_items = json.load(f)
         return [self.flatten_oid_fields(i) for i in raw_items]
+    
+    def _run_create_client_query(self, tx, client):
+        tx.run("""
+            MERGE (c:Client {company: $company})
+            SET c.commercial_name = $commercial_name,
+                c.description = $description,
+                c.emails = $emails,
+                c.phones = $phones,
+                c.creator_id = $creator_id,
+                c.created_at = $created_at,
+                c.updated_at = $updated_at,
+                c.mongo_id = $mongo_id
+        """,
+        company=client["company"],
+        commercial_name=client.get("commercial_name", ""),
+        description=client.get("description", ""),
+        emails=client.get("emails") or [],
+        phones=client.get("phones") or [],
+        creator_id=client.get("creator"),
+        created_at=client.get("createdAt"),
+        updated_at=client.get("updatedAt"),
+        mongo_id=client.get("_id"))
 
     def create_clients(self, clients):
-        def _create(tx, clients):
-            for client in clients:
-                tx.run("""
-                    MERGE (c:Client {company: $company})
-                    SET c.commercial_name = $commercial_name,
-                        c.description = $description,
-                        c.emails = $emails,
-                        c.phones = $phones,
-                        c.creator_id = $creator_id,
-                        c.created_at = $created_at,
-                        c.updated_at = $updated_at,
-                        c.mongo_id = $mongo_id
-                """,
-                company=client["company"],
-                commercial_name=client.get("commercial_name", ""),
-                description=client.get("description", ""),
-                emails=client.get("emails", []),
-                phones=client.get("phones", []),
-                creator_id=client.get("creator"),
-                created_at=client.get("createdAt"),
-                updated_at=client.get("updatedAt"),
-                mongo_id=client.get("_id")
-                )
         with self.driver.session() as session:
-            session.execute_write(_create, clients)
+            for client in clients:
+                session.execute_write(self._run_create_client_query, client)
+    
+    def add_new_client(self, client):
+        with self.driver.session() as session:
+            session.execute_write(self._run_create_client_query, client)
 
     def create_items(self, items):
         def _create(tx, items):

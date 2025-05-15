@@ -69,6 +69,24 @@ def update_suppliers():
         )
     )
 
+@app.route("/add-supplier", methods=["POST"])
+@require_api_key
+@swag_from("swagger_docs/add_supplier.yml")
+def add_suppliers():
+    logger.info("🔄 Received JSON request to add a supplier")
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "No JSON payload provided"}), 400
+
+        # Expecting a single supplier, not a list
+        neo4j_service.add_new_client(data)
+
+        return jsonify({"message": "✅ Supplier added to Neo4j"}), 200
+    except Exception as e:
+        logger.exception("❌ Error adding supplier")
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route("/update-products", methods=["POST"])
 @require_api_key

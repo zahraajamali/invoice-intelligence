@@ -1,0 +1,59 @@
+summary: Add new supplier data in Neo4j
+description: Send a single supplier as a JSON object to be saved in Neo4j.
+tags:
+  - Neo4j Upload
+
+consumes:
+  - application/json
+
+parameters:
+  - in: header
+    name: X-API-KEY
+    type: string
+    required: true
+    description: API key for authentication
+
+  - in: body
+    name: body
+    required: true
+    description: JSON object containing supplier data
+    schema:
+      type: object
+      properties:
+        company:
+          type: string
+          example: ACME Corp
+        commercial_name:
+          type: string
+          example: ACME
+        description:
+          type: string
+        emails:
+          type: array
+          items:
+            type: string
+        phones:
+          type: array
+          items:
+            type: string
+        creator:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        _id:
+          type: string
+          description: MongoDB ObjectId
+
+responses:
+  200:
+    description: Supplier data added successfully
+  400:
+    description: Invalid JSON or missing required fields
+  401:
+    description: Unauthorized
+  500:
+    description: Internal server error
