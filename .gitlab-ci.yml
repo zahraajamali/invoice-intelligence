@@ -1,0 +1,218 @@
+variables:
+  # --- K8s contexts & namespace ---
+  DEV_CONTEXT: "k8s/kubernetes-common/agent-kubernetes-dev:k8s-delinternet-dev"
+  PRD_CONTEXT: "k8s/kubernetes-common/agent-kubernetes:k8s-delinternet"
+  NAMESPACE: "invoice-analyzer"
+
+  # --- Image tags used in deploy steps ---
+  DEV_IMAGE: "$CI_REGISTRY_IMAGE:latest-dev"
+  PRD_IMAGE: "$CI_REGISTRY_IMAGE:latest"
+
+  # --- DEV Environment Variables ---
+  DEV_FLASK_PORT: "5001"
+  DEV_INVOICE_FILE_NAME: "invoice"
+  DEV_INVOICE_FILE_URL: "https://inventory-server.prd.delinternet.com/api/v1/files/79c4a4c73d75e82d76768d0afbe01b0a715da6fe4c576f3d5c2f2515e53865ae.pdf"
+
+  # Neo4j Dev Settings
+  DEV_NEO4J_HOST: "neo4j-service"
+  DEV_NEO4J_USERNAME: "neo4j"
+  DEV_NEO4J_PASSWORD: "del-ai123-dev"
+  DEV_NEO4J_HTTP_PORT: "7474"
+  DEV_NEO4J_BOLT_PORT: "7687"
+
+  DEV_SUPPLIERS_JSON_PATH: "datasets/inventory.suppliers.json"
+
+  # Secrets - Set these in GitLab CI/CD Variables (masked)
+  # DEV_OPENAI_API_KEY
+  # DEV_HUB_API_TOKEN
+  # DEV_SERVICE_API_KEY
+
+  # --- PRD Environment Variables ---
+  PRD_FLASK_PORT: "5001"
+  PRD_INVOICE_FILE_NAME: "invoice"
+  PRD_INVOICE_FILE_URL: "https://inventory-server.prd.delinternet.com/api/v1/files/79c4a4c73d75e82d76768d0afbe01b0a715da6fe4c576f3d5c2f2515e53865ae.pdf"
+
+  # Neo4j Prd Settings
+  PRD_NEO4J_HOST: "neo4j-service"
+  PRD_NEO4J_USERNAME: "neo4j"
+  PRD_NEO4J_PASSWORD: "del-ai123-prd"
+  PRD_NEO4J_HTTP_PORT: "7474"
+  PRD_NEO4J_BOLT_PORT: "7687"
+
+  PRD_SUPPLIERS_JSON_PATH: "datasets/inventory.suppliers.json"
+
+  # Secrets - Set these in GitLab CI/CD Variables (masked)
+  # PRD_OPENAI_API_KEY
+  # PRD_HUB_API_TOKEN
+  # PRD_SERVICE_API_KEY
+
+# =================
+# Pipeline stages
+# =================
+stages:
+  - build
+  - deploy
+  - cleanup
+
+# ============================
+# Shared templates
+# ============================
+.build_template: &build_template
+  stage: build
+  image:
+    name: docker:24.0
+    entrypoint: [""]
+  services:
+    - name: docker:24.0-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  script:
+    - set -euxo pipefail
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - docker build -t "$IMAGE" .
+    - docker push "$IMAGE"
+    - echo "Image built successfully - $IMAGE"
+  artifacts:
+    expire_in: 3 days
+
+.deploy_template: &deploy_template
+  stage: deploy
+  when: manual
+  image:
+    name: bitnamilegacy/kubectl:1.29.3
+    entrypoint: [""]
+  script:
+    - set -euxo pipefail
+    - kubectl config use-context "$CONTEXT"
+    - kubectl apply -k "$CI_PROJECT_DIR/k8s/$K8S_PATH"
+
+    # Update invoice-app deployment image
+    - kubectl -n "$NAMESPACE" set image deployment/invoice-app invoice-analyzer="$IMAGE"
+
+    # Set environment variables for invoice-app
+    - >
+      kubectl -n "$NAMESPACE" set env deployment/invoice-app --overwrite
+      OPENAI_API_KEY="${OPENAI_API_KEY}"
+      HUB_API_TOKEN="${HUB_API_TOKEN}"
+      SERVICE_API_KEY="${SERVICE_API_KEY}"
+      FLASK_PORT="${FLASK_PORT}"
+      INVOICE_FILE_NAME="${INVOICE_FILE_NAME}"
+      INVOICE_FILE_URL="${INVOICE_FILE_URL}"
+      NEO4J_HOST="${NEO4J_HOST}"
+      NEO4J_USERNAME="${NEO4J_USERNAME}"
+      NEO4J_PASSWORD="${NEO4J_PASSWORD}"
+      NEO4J_HTTP_PORT="${NEO4J_HTTP_PORT}"
+      NEO4J_BOLT_PORT="${NEO4J_BOLT_PORT}"
+      SUPPLIERS_JSON_PATH="${SUPPLIERS_JSON_PATH}"
+
+    # Rollout invoice-app & wait
+    - kubectl -n "$NAMESPACE" rollout restart deployment/invoice-app
+    - kubectl -n "$NAMESPACE" rollout status deployment/invoice-app
+
+    # Show environment variables for verification
+    - kubectl -n "$NAMESPACE" set env deployment/invoice-app --list || true
+
+    # Check pods status
+    - kubectl -n "$NAMESPACE" get pods
+
+.cleanup_template: &cleanup_template
+  stage: cleanup
+  when: manual
+  image:
+    name: bitnamilegacy/kubectl:1.29.3
+    entrypoint: [""]
+  script:
+    - kubectl config use-context "$CONTEXT"
+    - kubectl delete namespace "$NAMESPACE" --ignore-not-found=true
+
+# ===================
+# Build jobs
+# ===================
+build_image_dev:
+  <<: *build_template
+  variables:
+    IMAGE: "$DEV_IMAGE"
+  only:
+    - develop
+
+build_image_prd:
+  <<: *build_template
+  variables:
+    IMAGE: "$PRD_IMAGE"
+  only:
+    - main
+
+# ===================
+# Deploy jobs
+# ===================
+deploy_k8s_dev:
+  <<: *deploy_template
+  variables:
+    CONTEXT: $DEV_CONTEXT
+    K8S_PATH: "dev"
+    IMAGE: $DEV_IMAGE
+
+    # App Config
+    FLASK_PORT: $DEV_FLASK_PORT
+    INVOICE_FILE_NAME: $DEV_INVOICE_FILE_NAME
+    INVOICE_FILE_URL: $DEV_INVOICE_FILE_URL
+    SUPPLIERS_JSON_PATH: $DEV_SUPPLIERS_JSON_PATH
+
+    # Neo4j Config
+    NEO4J_HOST: $DEV_NEO4J_HOST
+    NEO4J_USERNAME: $DEV_NEO4J_USERNAME
+    NEO4J_PASSWORD: $DEV_NEO4J_PASSWORD
+    NEO4J_HTTP_PORT: $DEV_NEO4J_HTTP_PORT
+    NEO4J_BOLT_PORT: $DEV_NEO4J_BOLT_PORT
+
+    # Secrets (from GitLab CI/CD Variables)
+    OPENAI_API_KEY: $DEV_OPENAI_API_KEY
+    HUB_API_TOKEN: $DEV_HUB_API_TOKEN
+    SERVICE_API_KEY: $DEV_SERVICE_API_KEY
+  only:
+    - develop
+
+deploy_k8s_prd:
+  <<: *deploy_template
+  variables:
+    CONTEXT: $PRD_CONTEXT
+    K8S_PATH: "prd"
+    IMAGE: $PRD_IMAGE
+
+    # App Config
+    FLASK_PORT: $PRD_FLASK_PORT
+    INVOICE_FILE_NAME: $PRD_INVOICE_FILE_NAME
+    INVOICE_FILE_URL: $PRD_INVOICE_FILE_URL
+    SUPPLIERS_JSON_PATH: $PRD_SUPPLIERS_JSON_PATH
+
+    # Neo4j Config
+    NEO4J_HOST: $PRD_NEO4J_HOST
+    NEO4J_USERNAME: $PRD_NEO4J_USERNAME
+    NEO4J_PASSWORD: $PRD_NEO4J_PASSWORD
+    NEO4J_HTTP_PORT: $PRD_NEO4J_HTTP_PORT
+    NEO4J_BOLT_PORT: $PRD_NEO4J_BOLT_PORT
+
+    # Secrets (from GitLab CI/CD Variables)
+    OPENAI_API_KEY: $PRD_OPENAI_API_KEY
+    HUB_API_TOKEN: $PRD_HUB_API_TOKEN
+    SERVICE_API_KEY: $PRD_SERVICE_API_KEY
+  only:
+    - main
+
+# =======================
+# Cleanup / utility
+# =======================
+cleanup_dev:
+  <<: *cleanup_template
+  variables:
+    CONTEXT: "$DEV_CONTEXT"
+  only:
+    - develop
+
+cleanup_prd:
+  <<: *cleanup_template
+  variables:
+    CONTEXT: "$PRD_CONTEXT"
+  only:
+    - main

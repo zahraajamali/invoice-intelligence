@@ -168,7 +168,7 @@ def process_invoice():
         pdf_bytes = file.read()
 
         invoice_data = extract_invoice_data_from_pdf(pdf_bytes)
-
+        print("invocie data...",invoice_data)
     
         if not invoice_data:
             logger.error("❌ Invoice extraction failed")
