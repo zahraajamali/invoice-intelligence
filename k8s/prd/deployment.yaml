@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoice-analyzer-deployment
+  labels:
+    app: invoice-analyzer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invoice-analyzer
+  template:
+    metadata:
+      labels:
+        app: invoice-analyzer
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: invoice-analyzer-container
+          image: registry.delinternet.com/group/invoice-analyzer:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: snmp-trap
+              containerPort: 2162
+              protocol: UDP
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"

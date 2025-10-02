@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: invoice-analyzer-trap-service
+  labels:
+    app: invoice-analyzer
+spec:
+  type: ClusterIP
+  selector:
+    app: invoice-analyzer
+  ports:
+    - name: snmp-trap
+      protocol: UDP
+      port: 2162
+      targetPort: 2162
